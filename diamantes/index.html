@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es-GT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElitePixels - Recarga Diamantes Free Fire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f45 50%, #2b1b58 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(10, 14, 39, 0.85);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 0 40px rgba(80, 120, 255, 0.3);
+            border: 2px solid #4a7aff;
+        }
+
+        /* Encabezado con logo */
+        .encabezado {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            max-width: 400px;
+            margin-bottom: 15px;
+        }
+
+        .titulo-principal {
+            font-size: 2.8rem;
+            color: #4ac2ff;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px #4ac2ff;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            font-size: 1.8rem;
+            color: #ffd04a;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #ffd04a;
+        }
+
+        .descripcion {
+            margin: 20px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e6ff;
+        }
+
+        /* Botón WhatsApp */
+        .boton-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #25d366;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        .boton-whatsapp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+            background: #1fb855;
+        }
+
+        .icono-wp {
+            font-size: 1.6rem;
+        }
+
+        /* Tabla de precios */
+        .seccion-precios {
+            margin: 35px 0;
+        }
+
+        .titulo-seccion {
+            font-size: 1.7rem;
+            color: #a8c7ff;
+            text-transform: uppercase;
+            border-bottom: 3px solid #ffd04a;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tabla-precios {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(25, 35, 70, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .tabla-precios tr {
+            border-bottom: 1px solid #4a5a99;
+            transition: background 0.2s;
+        }
+
+        .tabla-precios tr:hover {
+            background: rgba(74, 122, 255, 0.1);
+        }
+
+        .tabla-precios tr:last-child {
+            border-bottom: none;
+        }
+
+        .tabla-precios td {
+            padding: 15px 20px;
+            font-size: 1.2rem;
+        }
+
+        .cantidad {
+            text-align: left;
+            color: #a8d8ff;
+            font-weight: bold;
+        }
+
+        .precio {
+            text-align: right;
+            color: #ffd04a;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .icono-diamante {
+            color: #4ac2ff;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* Secciones laterales */
+        .fila-doble {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .bloque {
+            flex: 1 1 380px;
+            background: rgba(25, 35, 70, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #5a7aff;
+        }
+
+        .bloque h3 {
+            color: #ffd04a;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .bloque p, .bloque li {
+            color: #e0e6ff;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .bloque ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .bloque li::before {
+            content: "⭐ ";
+            color: #ffd04a;
+            margin-right: 8px;
+        }
+
+        /* Métodos de pago */
+        .metodos-pago {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .metodo {
+            text-align: center;
+            padding: 12px 15px;
+            background: rgba(40, 55, 100, 0.8);
+            border-radius: 10px;
+            min-width: 120px;
+            font-weight: 500;
+        }
+
+        /* Pie de página */
+        .pie-pagina {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 210, 74, 0.1);
+            border-radius: 15px;
+            border: 2px solid #ffd04a;
+        }
+
+        .pie-pagina p {
+            font-size: 1.2rem;
+            color: #ffd04a;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .frase-final {
+            font-size: 1.3rem;
+            color: #ff6b4a;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+
+        /* Adaptación móvil */
+        @media (max-width: 700px) {
+            .titulo-principal { font-size: 2rem; }
+            .subtitulo { font-size: 1.3rem; }
+            .boton-whatsapp { font-size: 1.1rem; padding: 14px 24px; }
+            .tabla-precios td { padding: 12px; font-size: 1rem; }
+            .precio { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <!-- Encabezado -->
+        <div class="encabezado">
+            <img src="file_00000000e7bc71f5844bdf8247e54e5c.png" alt="ElitePixels" class="logo">
+            <h1 class="titulo-principal">¡Recarga Diamantes de Free Fire!</h1>
+            <h2 class="subtitulo">En ElitePixels</h2>
+            <p class="descripcion">
+                ¿Buscas un servicio rápido, seguro y confiable para recargar tus diamantes? 
+                En <strong>ElitePixels</strong> tenemos las mejores promociones para que disfrutes al máximo de Free Fire.
+            </p>
+
+            <!-- BOTÓN DE COMPRA POR WHATSAPP -->
+            <a href="https://wa.me/50246084686?text=¡Hola!%20Quiero%20comprar%20diamantes%20de%20Free%20Fire%20%F0%9F%92%8E" 
+               target="_blank" 
+               class="boton-whatsapp">
+                <span class="icono-wp">💬</span>
+                Comprar por WhatsApp
+            </a>
+        </div>
+
+        <!-- Tabla de precios -->
+        <div class="seccion-precios">
+            <h2 class="titulo-seccion">💎 Precios Oficiales</h2>
+            <table class="tabla-precios">
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 110 Diamantes</td><td class="precio">Q15</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 341 Diamantes</td><td class="precio">Q35</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 572 Diamantes</td><td class="precio">Q50</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 1,166 Diamantes</td><td class="precio">Q100</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 2,398 Diamantes</td><td class="precio">Q215</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 6,160 Diamantes</td><td class="precio">Q450</td></tr>
+            </table>
+        </div>
+
+        <!-- Secciones dobles -->
+        <div class="fila-doble">
+            <div class="bloque">
+                <h3>🎁 Bonificación para Nuevos Jugadores</h3>
+                <p>
+                    Si es la primera vez que recargas en tu cuenta y nunca has comprado diamantes anteriormente, 
+                    Garena puede otorgarte una bonificación adicional, según sus promociones vigentes.
+                </p>
+            </div>
+
+            <div class="bloque">
+                <h3>💳 Métodos de Pago</h3>
+                <div class="metodos-pago">
+                    <div class="metodo">Banrural</div>
+                    <div class="metodo">Banco Industrial (BI)</div>
+                    <div class="metodo">Nexa</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ventajas -->
+        <div class="bloque">
+            <h3>✅ ¿Por qué elegir ElitePixels?</h3>
+            <ul>
+                <li>Atención rápida</li>
+                <li>Recargas 100% seguras</li>
+                <li>Precios competitivos</li>
+                <li>Excelente servicio al cliente</li>
+                <li>Ideal para todos los amantes de los videojuegos</li>
+            </ul>
+        </div>
+
+        <!-- Pie de página -->
+        <div class="pie-pagina">
+            <p>Contáctanos hoy mismo y recibe información sobre promociones exclusivas.</p>
+            <div class="frase-final">En ElitePixels, tu diversión comienza con una recarga segura 🔥</div>
+        </div>
+    </div>
+</body>
+</html>
