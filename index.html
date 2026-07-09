@@ -3,319 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElitePixels.store - Recargas y Suscripciones</title>
+    <title>ElitePixels.store | La mejor tienda digital de Guatemala</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ============== PRELOADER ÉPICO ============== */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, #1A103C 0%, #050210 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #preloader.oculto {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.1);
+        }
+        .logo-preloader {
+            width: 200px;
+            height: auto;
+            animation: respiro 2s ease-in-out infinite, brilloExtremo 2.5s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 15px #A855F7);
+        }
+        @keyframes respiro {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.05) translateY(-8px); }
+        }
+        @keyframes brilloExtremo {
+            0% { filter: drop-shadow(0 0 15px #A855F7) drop-shadow(0 0 30px #7C3AED); }
+            100% { filter: drop-shadow(0 0 25px #EC4899) drop-shadow(0 0 50px #DB2777); }
+        }
+        .anillo-carga {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border: 3px solid transparent;
+            border-top: 3px solid #A855F7;
+            border-right: 3px solid #EC4899;
+            border-radius: 50%;
+            animation: girarRapido 1.2s linear infinite;
+            opacity: 0.7;
+        }
+        .anillo-carga:nth-child(2) {
+            width: 220px;
+            height: 220px;
+            animation-direction: reverse;
+            animation-duration: 0.9s;
+            border-top-color: #EC4899;
+            border-right-color: #06B6D4;
+            opacity: 0.5;
+        }
+        @keyframes girarRapido {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============== ESTILOS GENERALES ÉPICOS ============== */
         :root {
-            --primario: #0F172A;
-            --secundario: #1E40AF;
-            --acento: #10B981;
-            --texto: #F8FAFC;
-            --gris: #94A3B8;
-            --fondo-tarjeta: #1E293B;
+            --fondo-profundo: #050210;
+            --fondo-medio: #120A2A;
+            --primario-epico: #A855F7;
+            --secundario-epico: #EC4899;
+            --terciario-epico: #06B6D4;
+            --dorado: #FBBF24;
+            --texto: #FFFFFF;
+            --texto-claro: #C4B5FD;
         }
         * { scroll-behavior: smooth; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--primario); color: var(--texto); }
-        .logo-img { max-height: 52px; width: auto; }
-        
-        /* Animaciones y efectos mejorados */
-        @keyframes flotar {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+        body {
+            font-family: 'Segoe UI', 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 0%, #2E1065 0%, #120A2A 40%, #050210 100%);
+            color: var(--texto);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-        @keyframes brillo {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+        .logo-img { max-height: 50px; width: auto; }
+
+        /* ============== PARTICULAS Y FONDO DINÁMICO ============== */
+        .fondo-animado {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.4;
         }
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .particula {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, 0.3);
+            animation: flotarParticula 15s infinite ease-in-out;
         }
-        
-        .tarjeta { 
-            background: linear-gradient(145deg, #1E293B, #1a2435); 
-            border-radius: 16px; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border: 1px solid rgba(255,255,255,0.05); 
+        @keyframes flotarParticula {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* ============== ANIMACIONES ÉPICAS ============== */
+        @keyframes entradaMagica {
+            from { opacity: 0; transform: translateY(60px) scale(0.9) rotateX(15deg); }
+            to { opacity: 1; transform: translateY(0) scale(1) rotateX(0); }
+        }
+        @keyframes brilloBorde {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes pulsarFuerte {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.5); }
+            50% { box-shadow: 0 0 40px 15px rgba(168, 85, 247, 0); }
+        }
+
+        /* ============== TARJETAS ÉPICAS ============== */
+        .tarjeta {
+            background: linear-gradient(145deg, rgba(18, 10, 42, 0.9), rgba(46, 16, 101, 0.6));
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
             position: relative;
+            padding: 2.2rem;
             overflow: hidden;
-            animation: aparecer 0.6s ease forwards;
+            animation: entradaMagica 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .tarjeta:nth-child(1) { animation-delay: 0.1s; }
-        .tarjeta:nth-child(2) { animation-delay: 0.2s; }
-        .tarjeta:nth-child(3) { animation-delay: 0.3s; }
-        
         .tarjeta::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(16,185,129,0.1), transparent);
-            transition: left 0.5s;
+            inset: -2px;
+            background: linear-gradient(90deg, var(--primario-epico), var(--secundario-epico), var(--terciario-epico), var(--primario-epico));
+            background-size: 400% 400%;
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.3;
+            transition: opacity 0.5s;
+            animation: brilloBorde 4s linear infinite;
         }
-        .tarjeta:hover::before { left: 100%; }
-        .tarjeta:hover { 
-            transform: translateY(-8px) scale(1.02); 
-            border-color: var(--acento); 
-            box-shadow: 0 20px 40px rgba(16,185,129,0.2); 
+        .tarjeta:nth-child(1) { animation-delay: 0.15s; }
+        .tarjeta:nth-child(2) { animation-delay: 0.25s; }
+        .tarjeta:nth-child(3) { animation-delay: 0.35s; }
+        .tarjeta:nth-child(4) { animation-delay: 0.45s; }
+        .tarjeta:nth-child(5) { animation-delay: 0.55s; }
+        .tarjeta:hover {
+            transform: translateY(-12px) scale(1.04) rotateX(-2deg);
+            box-shadow: 0 30px 60px rgba(168, 85, 247, 0.4), 0 0 80px rgba(236, 72, 153, 0.15);
         }
-        
-        .boton { 
-            background: linear-gradient(135deg, var(--secundario), #2563EB); 
-            border-radius: 12px; 
-            font-weight: 600; 
-            transition: all 0.3s ease; 
+        .tarjeta:hover::before { opacity: 0.7; }
+
+        /* ============== BOTONES ÉPICOS ============== */
+        .boton-epico {
+            background: linear-gradient(135deg, var(--primario-epico), var(--secundario-epico));
+            background-size: 200% 200%;
+            animation: brilloBorde 3s ease infinite, pulsarFuerte 2.5s ease infinite;
+            border-radius: 18px;
+            font-weight: 800;
+            padding: 1rem 1.5rem;
+            border: none;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s ease;
+            font-size: 0.9rem;
+        }
+        .boton-epico:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.5);
+            background-position: 100% 50%;
+        }
+
+        .boton-messenger-epico {
+            background: linear-gradient(135deg, #00C6FF, #0072FF);
+            border-radius: 18px;
+            font-weight: 800;
+            padding: 1rem 2.2rem;
             border: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 25px rgba(0, 198, 255, 0.3);
         }
-        .boton::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            background-size: 200% 100%;
-            animation: brillo 3s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s;
+        .boton-messenger-epico:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 114, 255, 0.5);
         }
-        .boton:hover::after { opacity: 1; }
-        .boton:hover { 
-            background: linear-gradient(135deg, var(--acento), #059669); 
-            transform: translateY(-2px); 
-            box-shadow: 0 8px 20px rgba(16,185,129,0.3);
+
+        /* ============== NAVEGACIÓN ============== */
+        .navegacion {
+            background: rgba(5, 2, 16, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
         }
-        
-        .boton-whatsapp { 
-            background: linear-gradient(135deg, #25D366, #128C7E); 
-            color: white; 
-            box-shadow: 0 4px 15px rgba(37,211,102,0.3);
+
+        /* ============== TÍTULOS ÉPICOS ============== */
+        .titulo-epico {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 1px;
         }
-        .boton-whatsapp:hover { 
-            background: linear-gradient(135deg, #128C7E, #075E54); 
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+        .titulo-epico span {
+            background: linear-gradient(90deg, var(--primario-epico), var(--secundario-epico), var(--terciario-epico), var(--dorado));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: brilloBorde 5s ease infinite;
         }
-        
-        .seccion { padding: 5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
-        .titulo-seccion { 
-            font-size: 2rem; 
-            font-weight: 800; 
-            margin-bottom: 3rem; 
-            text-align: center; 
-            color: var(--texto); 
-            position: relative;
-        }
-        .titulo-seccion::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--acento), var(--secundario));
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-        .titulo-seccion span { color: var(--acento); }
-        
-        .metodo-pago { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            gap: 0.75rem; 
-            padding: 1rem; 
-            background: rgba(30, 64, 175, 0.1); 
-            border-radius: 10px; 
-            transition: all 0.3s ease; 
-            border: 1px solid transparent;
-        }
-        .metodo-pago:hover { 
-            background: rgba(16, 185, 129, 0.15); 
-            border-color: var(--acento);
-            transform: translateY(-3px);
-        }
-        
-        .icono-flotante { animation: flotar 3s ease-in-out infinite; }
-        .icono-flotante:nth-child(2) { animation-delay: 0.5s; }
-        
-        .navegacion { backdrop-filter: blur(12px); }
     </style>
 </head>
 <body>
 
-<!-- Barra de Navegación -->
-<header class="navegacion sticky top-0 z-50 bg-[#0F172A]/90 border-b border-slate-700/50">
+<!-- ============== PRELOADER ÉPICO ============== -->
+<div id="preloader">
+    <div class="anillo-carga"></div>
+    <div class="anillo-carga"></div>
+    <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@62eb006f94e3f243795242fdeb70db7d178a218d/file_00000000e7bc71f5844bdf8247e54e5c.png" alt="ElitePixels.store" class="logo-preloader">
+</div>
+
+<script>
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('preloader').classList.add('oculto');
+    }, 2200);
+});
+
+// Generar partículas de fondo dinámicas
+const fondo = document.createElement('div');
+fondo.className = 'fondo-animado';
+document.body.appendChild(fondo);
+for(let i=0; i<30; i++){
+    const p = document.createElement('div');
+    p.className = 'particula';
+    p.style.left = Math.random()*100 + '%';
+    p.style.top = Math.random()*100 + '%';
+    p.style.width = p.style.height = (Math.random()*4 + 1) + 'px';
+    p.style.animationDelay = Math.random()*15 + 's';
+    p.style.animationDuration = (Math.random()*10 + 10) + 's';
+    fondo.appendChild(p);
+}
+</script>
+
+<!-- ============== BARRA DE NAVEGACIÓN ============== -->
+<header class="navegacion sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <a href="#" class="flex items-center gap-3">
             <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@62eb006f94e3f243795242fdeb70db7d178a218d/file_00000000e7bc71f5844bdf8247e54e5c.png" alt="ElitePixels.store" class="logo-img">
-            <span class="text-xl font-bold">Elite<span class="text-[#10B981]">Pixels</span></span>
+            <span class="text-xl font-black">Elite<span class="text-[#EC4899]">Pixels</span></span>
         </a>
-        <nav class="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#recargas" class="hover:text-[#10B981] transition-colors duration-300 relative group">
-                Recargas
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#10B981] transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#streaming" class="hover:text-[#10B981] transition-colors duration-300 relative group">
-                Streaming
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#10B981] transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#suscripciones" class="hover:text-[#10B981] transition-colors duration-300 relative group">
-                Membresías
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#10B981] transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#pagos" class="hover:text-[#10B981] transition-colors duration-300 relative group">
-                Pagos
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#10B981] transition-all duration-300 group-hover:w-full"></span>
-            </a>
+        <nav class="hidden md:flex gap-8 text-sm font-bold text-purple-200">
+            <a href="#servicios" class="hover:text-[#EC4899] transition-colors duration-300">Servicios</a>
+            <a href="#pagos" class="hover:text-[#EC4899] transition-colors duration-300">Pagos</a>
+            <a href="#contacto" class="hover:text-[#EC4899] transition-colors duration-300">Contacto</a>
         </nav>
-        <a href="https://wa.me/50246084686" target="_blank" class="boton-whatsapp px-5 py-2.5 text-sm rounded-xl font-medium flex items-center gap-2">
-            <i class="fab fa-whatsapp"></i> WhatsApp
+        <a href="https://m.me/elitepixelsstore?text=Hola!%20Quiero%20información%20sobre%20sus%20productos%20y%20servicios%20disponibles" target="_blank" class="boton-messenger-epico text-white text-sm flex items-center gap-2">
+            <i class="fab fa-facebook-messenger"></i> ¡Chatear Ya!
         </a>
     </div>
 </header>
 
-<!-- Portada -->
-<section class="seccion text-center pt-20">
-    <div class="icono-flotante inline-block mb-6">
-        <i class="fas fa-gamepad text-5xl text-[#10B981]"></i>
-    </div>
-    <h1 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">Todo lo que necesitas para <span class="text-[#10B981]">jugar y disfrutar</span></h1>
-    <p class="text-[#94A3B8] text-lg max-w-2xl mx-auto mb-10">Recargas seguras, suscripciones oficiales y membresías al mejor precio de Guatemala. Entrega inmediata y garantía total en tus compras.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#recargas" class="boton px-8 py-3.5 text-lg">Ver Productos</a>
-        <a href="https://wa.me/50246084686" target="_blank" class="boton-whatsapp px-8 py-3.5 rounded-xl font-medium flex items-center justify-center gap-2 text-lg">
-            <i class="fab fa-whatsapp"></i> Escribir al WhatsApp
+<!-- ============== PORTADA ÉPICA ============== -->
+<section class="max-w-6xl mx-auto px-4 py-28 text-center">
+    <h1 class="text-4xl md:text-7xl font-black mb-8 leading-tight">
+        TU TIENDA DE <span class="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">PRODUCTOS DIGITALES</span>
+        <br>AL ALCANCE DE UN CLIC
+    </h1>
+    <p class="text-xl text-purple-200 max-w-3xl mx-auto mb-12">
+        Recargas instantáneas, códigos oficiales, suscripciones premium y todo lo que buscas. <br>
+        100% Seguro, garantizado y con la mejor atención de Guatemala 🇬🇹
+    </p>
+    <div class="flex flex-col sm:flex-row gap-5 justify-center">
+        <a href="https://m.me/elitepixelsstore?text=Hola!%20Me%20gustaría%20recibir%20información%20de%20todos%20sus%20productos%20y%20precios" target="_blank" class="boton-epico text-white">SOLICITAR INFORMACIÓN</a>
+        <a href="https://m.me/elitepixelsstore?text=Hola!%20Quiero%20hacer%20un%20pedido,%20¿qué%20tienen%20disponible?" target="_blank" class="boton-messenger-epico text-white flex items-center justify-center gap-2">
+            <i class="fab fa-facebook-messenger"></i> HACER UN PEDIDO
         </a>
     </div>
 </section>
 
-<!-- Recargas de Videojuegos -->
-<section id="recargas" class="seccion bg-[#1E293B]/20 rounded-3xl mx-4">
-    <h2 class="titulo-seccion">Recargas de <span>Videojuegos</span></h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="tarjeta p-8 text-center">
-            <div class="w-16 h-16 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-fire text-4xl text-orange-500"></i>
+<!-- ============== SERVICIOS ============== -->
+<section id="servicios" class="max-w-7xl mx-auto px-4 pb-24">
+    <h2 class="titulo-epico">NUESTROS <span>SERVICIOS ESTELARES</span></h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Recargas Telefónicas -->
+        <div class="tarjeta">
+            <div class="w-18 h-18 bg-gradient-to-br from-green-400/25 to-emerald-600/25 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fas fa-mobile-alt text-4xl text-green-300"></i>
             </div>
-            <h3 class="text-xl font-bold mb-2">Free Fire</h3>
-            <p class="text-[#94A3B8] mb-6">Diamantes, pases élite y paquetes exclusivos</p>
-            <a href="https://www.elitepixels.store/diamantes" target="_blank" class="boton w-full py-2.5 block rounded-xl">Pedir ahora</a>
+            <h3 class="text-2xl font-bold mb-3">📱 RECARGAS TIGO & CLARO</h3>
+            <p class="text-purple-200 mb-6">¡Super rápido! Solo necesitas tu número de teléfono y listo. Saldo al instante.</p>
+            <a href="https://m.me/elitepixelsstore?text=Hola!%20Quiero%20información%20y%20precios%20de%20recargas%20Tigo%20y%20Claro" target="_blank" class="boton-epico w-full block text-center text-white">Haz click aquí para comenzar con tu compra</a>
         </div>
+
+        <!-- Free Fire -->
+        <div class="tarjeta">
+            <div class="w-18 h-18 bg-gradient-to-br from-orange-400/25 to-red-600/25 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fas fa-fire text-4xl text-orange-300"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-3">🔥 DIAMANTES FREE FIRE</h3>
+            <p class="text-purple-200 mb-6">Pases élite, skins, diamantes y todo lo que necesites para dominar el juego.</p>
+            <a href="https://m.me/elitepixelsstore?text=Hola!%20Quiero%20saber%20los%20precios%20de%20diamantes%20y%20paquetes%20de%20Free%20Fire" target="_blank" class="boton-epico w-full block text-center text-white">Haz click aquí para comenzar con tu compra</a>
+        </div>
+
+        <!-- Códigos Xbox -->
+        <div class="tarjeta">
+            <div class="w-18 h-18 bg-gradient-to-br from-green-500/25 to-lime-400/25 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fab fa-xbox text-4xl text-green-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-3">🎮 CÓDIGOS DE JUEGOS XBOX</h3>
+            <p class="text-purple-200 mb-6">Juegos originales y oficiales en formato código digital. ¡Directo a tu consola!</p>
+            <a href="https://m.me/elitepixelsstore?text=Hola!%20Me%20pueden%20enviar%20el%20catálogo%20y%20precios%20de%20códigos%20para%20Xbox" target="_blank" class="boton-epico w-full block text-center text-white">Haz click aquí para comenzar con tu compra</a>
+        </div>
+
+        <!-- Streaming -->
+        <div class="tarjeta">
+            <div class="w-18 h-18 bg-gradient-to-br from-red-500/25 to-pink-500/25 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fas fa-play-circle text-4xl text-red-300"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-3">🎬 STREAMING PREMIUM</h3>
+            <p class="text-purple-200 mb-6">Netflix, Spotify y más plataformas sin anuncios, al mejor precio.</p>
+            <a href="https://m.me/elitepixelsstore?text=Hola!%20Quiero%20información%20de%20suscripciones%20de%20streaming%20disponibles" target="_blank" class="boton-epico w-full block text-center text-white">Haz click aquí para comenzar con tu compra</a>
+        </div>
+
+        <!-- Membresías -->
+        <div class="tarjeta">
+            <div class="w-18 h-18 bg-gradient-to-br from-blue-500/25 to-indigo-500/25 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fas fa-gamepad text-4xl text-blue-300"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-3">🕹️ MEMBRESÍAS DE CONSOLA</h3>
+            <p class="text-purple-200 mb-6">Game Pass, PlayStation Plus, Nintendo Online y más.</p>
+            <a href="https://m.me/elitepixelsstore?text=Hola!%20Me%20gustaría%20conocer%20los%20precios%20de%20membresías%20para%20consolas" target="_blank" class="boton-epico w-full block text-center text-white">Haz click aquí para comenzar con tu compra</a>
+        </div>
+
     </div>
 </section>
 
-<!-- Streaming -->
-<section id="streaming" class="seccion">
-    <h2 class="titulo-seccion">Suscripciones de <span>Streaming</span></h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="tarjeta p-6 flex items-center gap-5">
-            <div class="w-14 h-14 bg-red-600/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-play-circle text-3xl text-red-600"></i>
-            </div>
-            <div class="flex-grow">
-                <h3 class="text-xl font-bold">Netflix</h3>
-                <p class="text-[#94A3B8]">Planes básico, estándar y premium</p>
-            </div>
-            <a href="https://wa.me/50246084686?text=Hola!%20Quiero%20información%20de%20Netflix" target="_blank" class="boton px-5 py-2.5 rounded-xl text-sm flex-shrink-0">Comprar</a>
+<!-- ============== FORMAS DE PAGO ============== -->
+<section id="pagos" class="max-w-5xl mx-auto px-4 py-20">
+    <h2 class="titulo-epico">ACEPTAMOS <span>TUS PAGOS</span></h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="tarjeta text-center">
+            <i class="fas fa-university text-4xl text-purple-300 mb-5"></i>
+            <h4 class="font-black text-xl">Banrural</h4>
+            <p class="text-sm text-purple-200 mt-2">Transferencia o depósito</p>
         </div>
-        <div class="tarjeta p-6 flex items-center gap-5">
-            <div class="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <i class="fab fa-spotify text-3xl text-green-500"></i>
-            </div>
-            <div class="flex-grow">
-                <h3 class="text-xl font-bold">Spotify Premium</h3>
-                <p class="text-[#94A3B8]">Sin anuncios, música y podcasts ilimitados</p>
-            </div>
-            <a href="https://wa.me/50246084686?text=Hola!%20Quiero%20Spotify%20Premium" target="_blank" class="boton px-5 py-2.5 rounded-xl text-sm flex-shrink-0">Comprar</a>
+        <div class="tarjeta text-center">
+            <i class="fas fa-building text-4xl text-purple-300 mb-5"></i>
+            <h4 class="font-black text-xl">BI</h4>
+            <p class="text-sm text-purple-200 mt-2">Transferencia y depósitos</p>
         </div>
-    </div>
-</section>
-
-<!-- Membresías de Consolas -->
-<section id="suscripciones" class="seccion bg-[#1E293B]/20 rounded-3xl mx-4">
-    <h2 class="titulo-seccion">Membresías de <span>Consolas</span></h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="tarjeta p-6 text-center">
-            <div class="w-14 h-14 bg-green-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fab fa-xbox text-3xl text-green-600"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Xbox Game Pass</h3>
-            <p class="text-[#94A3B8] mb-6">Consola, PC y Ultimate</p>
-            <a href="https://wa.me/50246084686?text=Hola!%20Quiero%20saber%20precios%20de%20Xbox%20Game%20Pass" target="_blank" class="boton w-full py-2.5 block rounded-xl">Ver opciones</a>
+        <div class="tarjeta text-center">
+            <i class="fas fa-landmark text-4xl text-purple-300 mb-5"></i>
+            <h4 class="font-black text-xl">BAC</h4>
+            <p class="text-sm text-purple-200 mt-2">Transferencia o depósito</p>
         </div>
-        <div class="tarjeta p-6 text-center">
-            <div class="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fab fa-playstation text-3xl text-blue-500"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">PlayStation Plus</h3>
-            <p class="text-[#94A3B8] mb-6">Esencial, Extra y Premium</p>
-            <a href="https://wa.me/50246084686?text=Hola!%20Quiero%20información%20de%20PlayStation%20Plus" target="_blank" class="boton w-full py-2.5 block rounded-xl">Ver opciones</a>
-        </div>
-        <div class="tarjeta p-6 text-center">
-            <div class="w-14 h-14 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-gamepad text-3xl text-red-500"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Nintendo Switch Online</h3>
-            <p class="text-[#94A3B8] mb-6">Individual y Familiar</p>
-            <a href="https://wa.me/50246084686?text=Hola!%20Quiero%20Nintendo%20Switch%20Online" target="_blank" class="boton w-full py-2.5 block rounded-xl">Ver opciones</a>
+        <div class="tarjeta text-center">
+            <i class="fas fa-wallet text-4xl text-purple-300 mb-5"></i>
+            <h4 class="font-black text-xl">Nexa</h4>
+            <p class="text-sm text-purple-200 mt-2">Pago digital al instante</p>
         </div>
     </div>
+    <p class="text-center text-purple-200 mt-10 text-lg">Confirma los datos al realizar tu compra por Messenger ✅</p>
 </section>
 
-<!-- Formas de Pago -->
-<section id="pagos" class="seccion">
-    <h2 class="titulo-seccion">Formas de <span>Pago</span></h2>
-    <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="tarjeta p-6 text-center">
-            <div class="metodo-pago mb-3">
-                <i class="fas fa-university text-xl"></i>
-                <span class="font-semibold">Banrural</span>
-            </div>
-            <p class="text-sm text-[#94A3B8]">Transferencia o depósito</p>
-        </div>
-        <div class="tarjeta p-6 text-center">
-            <div class="metodo-pago mb-3">
-                <i class="fas fa-building text-xl"></i>
-                <span class="font-semibold">BI</span>
-            </div>
-            <p class="text-sm text-[#94A3B8]">Banca en línea</p>
-        </div>
-        <div class="tarjeta p-6 text-center">
-            <div class="metodo-pago mb-3">
-                <i class="fas fa-wallet text-xl"></i>
-                <span class="font-semibold">Nexa</span>
-            </div>
-            <p class="text-sm text-[#94A3B8]">Pago digital rápido</p>
-        </div>
-    </div>
-    <p class="text-center text-[#94A3B8] mt-8">Confirma los datos completos de pago al realizar tu compra por WhatsApp ✅</p>
-</section>
-
-<!-- Contacto -->
-<section id="contacto" class="seccion bg-[#1E293B]/20 rounded-3xl mx-4">
-    <h2 class="titulo-seccion">¿Tienes dudas? <span>Contáctanos</span></h2>
-    <div class="max-w-xl mx-auto tarjeta p-10 text-center">
-        <div class="w-20 h-20 bg-[#25D366]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fab fa-whatsapp text-5xl text-[#25D366]"></i>
-        </div>
-        <h3 class="text-2xl font-bold mb-3">Todo por WhatsApp</h3>
-        <p class="text-[#94A3B8] mb-5">Atención inmediata, confirmaciones y envío de productos directamente por este medio</p>
-        <p class="text-xl font-semibold mb-8">📱 +502 4608 4686</p>
-        <a href="https://wa.me/50246084686" target="_blank" class="boton-whatsapp px-8 py-3.5 rounded-xl font-medium inline-flex items-center gap-2 text-lg">
-            <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+<!-- ============== CONTACTO ============== -->
+<section id="contacto" class="max-w-3xl mx-auto px-4 py-20">
+    <div class="tarjeta text-center">
+        <i class="fab fa-facebook-messenger text-6xl text-[#00C6FF] mb-6"></i>
+        <h2 class="text-3xl font-black mb-4">¡TODO POR MESSENGER!</h2>
+        <p class="text-purple-200 mb-8 text-lg">Atención VIP, confirmaciones rápidas y entrega inmediata. ¡No esperes más!</p>
+        <a href="https://m.me/elitepixelsstore?text=Hola!%20Quiero%20más%20detalles%20sobre%20cómo%20comprar%20y%20sus%20productos" target="_blank" class="boton-messenger-epico text-white inline-flex items-center gap-2 text-lg">
+            <i class="fab fa-facebook-messenger"></i> ABRIR CHAT AHORA
         </a>
     </div>
 </section>
 
-<!-- Pie de página -->
-<footer class="bg-[#0F172A] border-t border-slate-700/50 py-8 text-center text-sm text-[#94A3B8] mt-8">
-    <p class="font-medium">© 2026 ElitePixels.store - Todos los derechos reservados</p>
-    <p class="mt-2">Tienda oficial de recargas y suscripciones digitales | Guatemala 🇬🇹</p>
+<!-- ============== PIE DE PÁGINA ============== -->
+<footer class="border-t border-purple-900/50 py-10 text-center text-sm text-purple-400">
+    <p class="font-bold text-lg">© 2026 ElitePixels.store - LA TIENDA DIGITAL DE GUATEMALA</p>
+    <p class="mt-3">Todos los derechos reservados | Productos oficiales y garantizados 🇬🇹</p>
 </footer>
 
 </body>
