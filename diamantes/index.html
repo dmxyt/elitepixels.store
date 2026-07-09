@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ElitePixels.store - Recarga Diamantes Free Fire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
         }
 
         body {
@@ -23,113 +24,130 @@
             max-width: 900px;
             margin: 0 auto;
             background: rgba(10, 14, 39, 0.85);
-            border-radius: 20px;
-            padding: 30px 20px;
-            box-shadow: 0 0 40px rgba(80, 120, 255, 0.3);
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: 0 0 50px rgba(80, 120, 255, 0.35);
             border: 2px solid #4a7aff;
+            backdrop-filter: blur(10px);
+            animation: aparecer 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Encabezado con logo */
         .encabezado {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .logo {
-            max-width: 450px;
+            max-width: 420px;
             width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border-radius: 12px;
+            filter: drop-shadow(0 0 15px rgba(74, 194, 255, 0.4));
         }
 
         .titulo-principal {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             color: #4ac2ff;
             text-transform: uppercase;
-            text-shadow: 0 0 15px #4ac2ff;
-            margin-bottom: 8px;
+            text-shadow: 0 0 20px #4ac2ff;
+            margin-bottom: 10px;
+            font-weight: 900;
         }
 
         .subtitulo {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             color: #ffd04a;
             text-transform: uppercase;
-            text-shadow: 0 0 10px #ffd04a;
+            text-shadow: 0 0 12px #ffd04a;
+            font-weight: 700;
         }
 
         .descripcion {
-            margin: 20px 0;
-            font-size: 1.1rem;
-            line-height: 1.6;
+            margin: 25px 0;
+            font-size: 1.15rem;
+            line-height: 1.7;
             color: #e0e6ff;
         }
 
-        /* Botón WhatsApp */
-        .boton-whatsapp {
+        /* Botón Messenger */
+        .boton-messenger {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
-            background: #25d366;
+            background: linear-gradient(135deg, #00C6FF, #0072FF);
             color: white;
             font-size: 1.3rem;
             font-weight: bold;
-            padding: 16px 32px;
+            padding: 18px 35px;
             border-radius: 50px;
             text-decoration: none;
             margin: 25px 0;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 114, 255, 0.45);
             transition: all 0.3s ease;
-            border: 2px solid #fff;
+            border: 2px solid rgba(255,255,255,0.3);
+            width: 100%;
+            max-width: 450px;
         }
 
-        .boton-whatsapp:hover {
+        .boton-messenger:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-            background: #1fb855;
+            box-shadow: 0 8px 30px rgba(0, 114, 255, 0.6);
+            background: linear-gradient(135deg, #0099E6, #005FD1);
         }
 
-        .icono-wp {
+        .icono-msj {
             font-size: 1.6rem;
         }
 
         /* Tabla de precios */
         .seccion-precios {
-            margin: 35px 0;
+            margin: 40px 0;
         }
 
         .titulo-seccion {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             color: #a8c7ff;
             text-transform: uppercase;
             border-bottom: 3px solid #ffd04a;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-weight: 800;
         }
 
         .tabla-precios {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             background: rgba(25, 35, 70, 0.9);
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
+            border: 1px solid #4a5a99;
         }
 
         .tabla-precios tr {
-            border-bottom: 1px solid #4a5a99;
-            transition: background 0.2s;
+            transition: all 0.25s ease;
         }
 
         .tabla-precios tr:hover {
-            background: rgba(74, 122, 255, 0.1);
+            background: rgba(74, 122, 255, 0.15);
         }
 
-        .tabla-precios tr:last-child {
+        .tabla-precios tr:last-child td {
             border-bottom: none;
         }
 
         .tabla-precios td {
-            padding: 15px 20px;
+            padding: 18px 22px;
             font-size: 1.2rem;
+            border-bottom: 1px solid #4a5a99;
         }
 
         .cantidad {
@@ -142,12 +160,12 @@
             text-align: right;
             color: #ffd04a;
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
         }
 
         .icono-diamante {
             color: #4ac2ff;
-            margin-right: 10px;
+            margin-right: 12px;
             font-size: 1.5rem;
         }
 
@@ -156,28 +174,37 @@
             display: flex;
             flex-wrap: wrap;
             gap: 25px;
-            margin: 35px 0;
+            margin: 40px 0;
         }
 
         .bloque {
-            flex: 1 1 380px;
+            flex: 1 1 360px;
             background: rgba(25, 35, 70, 0.9);
-            border-radius: 15px;
-            padding: 25px;
+            border-radius: 16px;
+            padding: 28px;
             border: 1px solid #5a7aff;
+            transition: transform 0.3s ease;
+        }
+
+        .bloque:hover {
+            transform: translateY(-5px);
         }
 
         .bloque h3 {
             color: #ffd04a;
             font-size: 1.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             text-transform: uppercase;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .bloque p, .bloque li {
             color: #e0e6ff;
-            line-height: 1.7;
-            font-size: 1.05rem;
+            line-height: 1.75;
+            font-size: 1.08rem;
         }
 
         .bloque ul {
@@ -185,37 +212,57 @@
             padding-left: 0;
         }
 
+        .bloque li {
+            padding: 6px 0;
+        }
+
         .bloque li::before {
             content: "⭐ ";
             color: #ffd04a;
-            margin-right: 8px;
+            margin-right: 10px;
+            font-weight: bold;
         }
 
         /* Métodos de pago */
         .metodos-pago {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             flex-wrap: wrap;
             gap: 15px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .metodo {
             text-align: center;
-            padding: 12px 15px;
+            padding: 16px 18px;
             background: rgba(40, 55, 100, 0.8);
-            border-radius: 10px;
-            min-width: 120px;
-            font-weight: 500;
+            border-radius: 12px;
+            min-width: 160px;
+            font-weight: 600;
+            border: 1px solid rgba(255,208,74,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .metodo:hover {
+            background: rgba(255,208,74,0.15);
+            transform: translateY(-3px);
+        }
+
+        .metodo small {
+            display: block;
+            font-weight: normal;
+            color: #c0cfff;
+            margin-top: 6px;
+            font-size: 0.85rem;
         }
 
         /* Pie de página */
         .pie-pagina {
             text-align: center;
-            margin-top: 40px;
-            padding: 25px;
+            margin-top: 45px;
+            padding: 30px 25px;
             background: rgba(255, 210, 74, 0.1);
-            border-radius: 15px;
+            border-radius: 16px;
             border: 2px solid #ffd04a;
         }
 
@@ -223,25 +270,33 @@
             font-size: 1.2rem;
             color: #ffd04a;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .frase-final {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #ff6b4a;
-            font-weight: bold;
+            font-weight: 900;
             text-transform: uppercase;
-            margin-top: 15px;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(255,107,74,0.4);
         }
 
-        /* Adaptación móvil */
+        /* Adaptación móvil perfecta */
         @media (max-width: 700px) {
-            .logo { max-width: 320px; }
+            .contenedor { padding: 25px 18px; }
+            .logo { max-width: 300px; }
             .titulo-principal { font-size: 2rem; }
             .subtitulo { font-size: 1.3rem; }
-            .boton-whatsapp { font-size: 1.1rem; padding: 14px 24px; }
-            .tabla-precios td { padding: 12px; font-size: 1rem; }
-            .precio { font-size: 1.1rem; }
+            .descripcion { font-size: 1.05rem; }
+            .boton-messenger { font-size: 1.15rem; padding: 15px 25px; }
+            .tabla-precios td { padding: 15px 12px; font-size: 1rem; }
+            .precio { font-size: 1.15rem; }
+            .fila-doble { gap: 20px; }
+            .bloque { padding: 20px; flex: 1 1 100%; }
+            .bloque h3 { font-size: 1.3rem; }
+            .frase-final { font-size: 1.2rem; }
+            .metodo { min-width: 140px; padding: 14px 12px; }
         }
     </style>
 </head>
@@ -258,67 +313,81 @@
             <h2 class="subtitulo">En ElitePixels.store</h2>
             <p class="descripcion">
                 ¿Buscas un servicio rápido, seguro y confiable para recargar tus diamantes? 
-                En <strong>ElitePixels.store</strong> tenemos las mejores promociones para que disfrutes al máximo de Free Fire.
+                En <strong>ElitePixels.store</strong> tenemos las mejores promociones y precios de todo Guatemala 🇬🇹 para que disfrutes al máximo de Free Fire.
             </p>
 
-            <!-- BOTÓN ENLAZADO A TU WHATSAPP -->
-            <a href="https://wa.me/50246084686?text=¡Hola!%20Quiero%20comprar%20diamantes%20de%20Free%20Fire%20en%20ElitePixels.store%20%F0%9F%92%8E" 
+            <!-- BOTÓN MESSENGER FUNCIONAL -->
+            <a href="https://m.me/elitepixelsstore?text=¡Hola!%20Quiero%20comprar%20diamantes%20de%20Free%20Fire%20en%20ElitePixels.store%20💎" 
                target="_blank" 
                rel="noopener noreferrer"
-               class="boton-whatsapp">
-                <span class="icono-wp">💬</span>
-                Comprar por WhatsApp
+               class="boton-messenger">
+                <span class="icono-msj"><i class="fab fa-facebook-messenger"></i></span>
+                Comprar por Messenger
             </a>
         </div>
 
         <!-- Tabla de precios oficiales -->
         <div class="seccion-precios">
-            <h2 class="titulo-seccion">💎 Precios Oficiales</h2>
+            <h2 class="titulo-seccion">💎 Precios Oficiales en Quetzales</h2>
             <table class="tabla-precios">
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 110 Diamantes</td><td class="precio">Q15</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 341 Diamantes</td><td class="precio">Q35</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 572 Diamantes</td><td class="precio">Q50</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 1,166 Diamantes</td><td class="precio">Q100</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 2,398 Diamantes</td><td class="precio">Q215</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 6,160 Diamantes</td><td class="precio">Q450</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 110 Diamantes</td><td class="precio">Q 15.00</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 341 Diamantes</td><td class="precio">Q 35.00</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 572 Diamantes</td><td class="precio">Q 50.00</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 1.166 Diamantes</td><td class="precio">Q 100.00</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 2.398 Diamantes</td><td class="precio">Q 215.00</td></tr>
+                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 6.160 Diamantes</td><td class="precio">Q 450.00</td></tr>
             </table>
         </div>
 
         <!-- Secciones de beneficios y pagos -->
         <div class="fila-doble">
             <div class="bloque">
-                <h3>🎁 Bonificación para Nuevos Jugadores</h3>
+                <h3><i class="fas fa-gift"></i> Bonificación Especial</h3>
                 <p>
                     Si es la primera vez que recargas en tu cuenta y nunca has comprado diamantes anteriormente, 
-                    Garena puede otorgarte una bonificación adicional, según sus promociones vigentes.
+                    Garena te regala un <strong>100% de bonificación extra</strong> según sus promociones vigentes. ¡Duplica tus diamantes!
                 </p>
             </div>
 
             <div class="bloque">
-                <h3>💳 Métodos de Pago en Guatemala</h3>
+                <h3><i class="fas fa-credit-card"></i> Métodos de Pago Disponibles</h3>
                 <div class="metodos-pago">
-                    <div class="metodo">Banrural</div>
-                    <div class="metodo">Banco Industrial (BI)</div>
-                    <div class="metodo">Nexa</div>
+                    <div class="metodo">
+                        🏦 Banrural
+                        <small>Depósito o Transferencia</small>
+                    </div>
+                    <div class="metodo">
+                        🏦 Banco Industrial
+                        <small>Depósito o Transferencia</small>
+                    </div>
+                    <div class="metodo">
+                        🏦 BAC Credomatic
+                        <small>Depósito o Transferencia</small>
+                    </div>
+                    <div class="metodo">
+                        💳 Nexa
+                        <small>Pago digital inmediato</small>
+                    </div>
                 </div>
+                <p style="margin-top:15px; font-size:0.95rem;">Te compartimos los datos completos al escribirnos por Messenger.</p>
             </div>
         </div>
 
         <!-- Por qué elegirnos -->
         <div class="bloque">
-            <h3>✅ ¿Por qué elegir ElitePixels.store?</h3>
+            <h3><i class="fas fa-check-circle"></i> ¿Por qué elegir ElitePixels.store?</h3>
             <ul>
-                <li>Atención rápida y personalizada</li>
-                <li>Recargas 100% seguras y garantizadas</li>
-                <li>Precios competitivos en todo Guatemala</li>
-                <li>Excelente servicio al cliente</li>
-                <li>Ideal para todos los amantes de Free Fire</li>
+                <li>✅ Atención rápida y personalizada todos los días</li>
+                <li>✅ Recargas 100% seguras y garantizadas, sin riesgos</li>
+                <li>✅ Los precios más bajos y competitivos de Guatemala</li>
+                <li>✅ Entrega inmediata después de confirmar el pago</li>
+                <li>✅ No pedimos tu contraseña, solo tu ID de jugador</li>
             </ul>
         </div>
 
         <!-- Pie de página -->
         <div class="pie-pagina">
-            <p>Contáctanos hoy mismo y recibe información sobre promociones exclusivas.</p>
+            <p>📩 Contáctanos hoy mismo y recibe información sobre promociones exclusivas.</p>
             <div class="frase-final">En ElitePixels.store, tu diversión comienza con una recarga segura 🔥</div>
         </div>
     </div>
