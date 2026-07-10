@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es-GT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afiliados - ElitePixels.store | Recargas Free Fire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* ---------------- PRELOADER ---------------- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top, #3b0764 0%, #1a0533 50%, #0f021e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #preloader.oculto {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .logo-preloader {
+            max-width: 300px;
+            width: 80%;
+            animation: girarSuave 2s ease-in-out infinite, brillo 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes girarSuave {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(2deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes brillo {
+            from { filter: drop-shadow(0 0 15px rgba(192, 132, 252, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(240, 171, 252, 0.8)); }
+        }
+        /* ---------------- FIN PRELOADER ---------------- */
+
+        body {
+            background: radial-gradient(circle at top, #3b0764 0%, #1a0533 50%, #0f021e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .contenedor {
+            max-width: 850px;
+            margin: 0 auto;
+            background: rgba(20, 5, 40, 0.9);
+            border-radius: 24px;
+            padding: 40px 25px;
+            box-shadow: 0 0 60px rgba(168, 85, 247, 0.25);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Encabezado */
+        .encabezado {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .logo {
+            max-width: 320px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            box-shadow: 0 0 25px rgba(192, 132, 252, 0.4);
+        }
+
+        .etiqueta {
+            display: inline-block;
+            background: rgba(240, 171, 252, 0.15);
+            color: #f0abfc;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(240, 171, 252, 0.4);
+        }
+
+        .titulo-principal {
+            font-size: 2.2rem;
+            color: #c084fc;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+
+        .descripcion {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #d8b4fe;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Secciones */
+        .seccion {
+            margin: 50px 0;
+        }
+
+        .titulo-seccion {
+            font-size: 1.6rem;
+            color: #f0abfc;
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(240, 171, 252, 0.3);
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tarjeta {
+            background: rgba(45, 11, 82, 0.5);
+            border-radius: 16px;
+            padding: 30px 25px;
+            border-left: 4px solid #a855f7;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-3px);
+        }
+
+        .tarjeta h3 {
+            color: #f0abfc;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tarjeta p, .tarjeta li {
+            color: #d8b4fe;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .tarjeta ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .tarjeta li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        .tarjeta li::before {
+            content: "✓";
+            color: #c084fc;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .resaltado {
+            color: #f0abfc;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .aviso-cuentas {
+            background: rgba(240, 171, 252, 0.1);
+            border: 1px solid rgba(240, 171, 252, 0.4);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+
+        .aviso-cuentas p {
+            color: #e9d5ff;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Tipos de Afiliados */
+        .grid-tipos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tipo {
+            background: rgba(65, 18, 117, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .tipo h4 {
+            color: #e9d5ff;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .tipo p {
+            font-size: 0.95rem;
+            color: #d8b4fe;
+        }
+
+        .tipo .comision {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f0abfc;
+            font-size: 1.2rem;
+        }
+
+        /* Pasos */
+        .pasos {
+            counter-reset: paso;
+            margin-top: 15px;
+        }
+
+        .paso {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 20px;
+        }
+
+        .paso::before {
+            counter-increment: paso;
+            content: counter(paso);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 35px;
+            height: 35px;
+            background: #a855f7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .faq-item:last-child { border-bottom: none; }
+
+        .faq-pregunta {
+            font-weight: 600;
+            color: #e9d5ff;
+            margin-bottom: 5px;
+        }
+
+        .faq-respuesta {
+            color: #d8b4fe;
+            font-size: 1rem;
+        }
+
+        /* Botón */
+        .contenedor-boton {
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+
+        .boton-messenger {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #0099ff, #0066cc);
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .boton-messenger:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.5);
+        }
+
+        .icono-msj {
+            font-size: 1.5rem;
+        }
+
+        .texto-boton {
+            margin-top: 15px;
+            color: #d8b4fe;
+            font-size: 1rem;
+        }
+
+        /* Pie */
+        .pie-pagina {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(240, 171, 252, 0.3);
+        }
+
+        .pie-pagina p {
+            font-size: 1rem;
+            color: #d8b4fe;
+            margin-bottom: 10px;
+        }
+
+        .frase-final {
+            font-size: 1.1rem;
+            color: #f0abfc;
+            font-weight: 600;
+        }
+
+        /* Móvil */
+        @media (max-width: 600px) {
+            .titulo-principal { font-size: 1.8rem; }
+            .descripcion { font-size: 1.05rem; }
+            .boton-messenger { font-size: 1.1rem; padding: 15px 30px; }
+            .tarjeta { padding: 22px 18px; }
+            .contenedor { padding: 25px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@62eb006f94e3f243795242fdeb70db7d178a218d/file_00000000e7bc71f5844bdf8247e54e5c.png" 
+             alt="Cargando ElitePixels.store" class="logo-preloader">
+    </div>
+
+    <div class="contenedor">
+        <!-- Encabezado -->
+        <div class="encabezado">
+            <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@62eb006f94e3f243795242fdeb70db7d178a218d/file_00000000e7bc71f5844bdf8247e54e5c.png" 
+                 alt="ElitePixels.store" class="logo" loading="lazy">
+            
+            <span class="etiqueta">📢 Programa Oficial y Verificado</span>
+            <h1 class="titulo-principal">¡Sé un punto de recargas oficial de Free Fire en Guatemala!</h1>
+            <p class="descripcion">
+                Únete a la red de distribuidores autorizados de <strong>ElitePixels.store</strong>. Empieza a generar ingresos constantes, sin inversión inicial y con el respaldo de la tienda más confiable de recargas.
+            </p>
+        </div>
+
+        <!-- ¿Cómo funciona? -->
+        <div class="seccion">
+            <h2 class="titulo-seccion">📋 ¿Cómo funciona el programa?</h2>
+            <div class="tarjeta">
+                <p>Es muy sencillo: tú ofreces nuestras recargas y pases a tus clientes, ellos te pagan en efectivo. Tú puedes depositar el monto a nuestras cuentas oficiales, o bien, puede ir un miembro del equipo ElitePixels hasta tu ubicación para realizar el cobro.</p>
+                <br>
+                <p>Nosotros procesamos la entrega de forma rápida y segura, y tú recibes tu ganancia por cada venta completada. No necesitas comprar inventario, no tienes costos de inscripción ni cuotas mensuales.</p>
+                
+                <div class="aviso-cuentas">
+                    <p>⚠️ <strong>IMPORTANTE:</strong> A la hora de realizar el pago o hacer cuentas, recuerda restar tu porcentaje de ganancia ya acordado con quien te afiliaste.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipos de Afiliados y Comisión -->
+        <div class="seccion">
+            <h2 class="titulo-seccion">💰 Gana por cada recarga</h2>
+            <div class="tarjeta">
+                <h3>Tu comisión garantizada</h3>
+                <p>Por cada recarga que vendas recibirás entre <span class="resaltado">2 a 3 Quetzales</span>. El monto exacto dependerá de dos factores:</p>
+                <ul style="margin-top:10px;">
+                    <li>El tamaño y volumen de ventas de tu negocio</li>
+                    <li>Tu ubicación geográfica y zona de influencia</li>
+                </ul>
+            </div>
+
+            <h3 style="text-align:center; margin-bottom:15px; color:#f0abfc;">Niveles de afiliado</h3>
+            <div class="grid-tipos">
+                <div class="tipo">
+                    <h4>Afiliado Inicio</h4>
+                    <p>Para tiendas pequeñas, vendedores independientes o zonas locales</p>
+                    <span class="comision">Q2.00 por venta</span>
+                </div>
+                <div class="tipo">
+                    <h4>Afiliado Estándar</h4>
+                    <p>Negocios establecidos y buen flujo de clientes</p>
+                    <span class="comision">Q2.50 por venta</span>
+                </div>
+                <div class="tipo">
+                    <h4>Afiliado Elite</h4>
+                    <p>Grandes locales, zonas comerciales o alto volumen diario</p>
+                    <span class="comision">Q3.00 por venta</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ventajas Exclusivas -->
+        <div class="seccion">
+            <h2 class="titulo-seccion">🚀 Ventajas exclusivas para ti</h2>
+            <div class="tarjeta">
+                <ul>
+                    <li>Distintivo oficial de "Punto Verificado ElitePixels.store" para exhibir</li>
+                    <li>Recargas al mejor precio del mercado, para que tú también tengas margen</li>
+                    <li>Entregas en menos de 5 minutos, sin errores ni retrasos</li>
+                    <li>Soporte personalizado y exclusivo por Messenger</li>
+                    <li>Recibes material publicitario listo para usar</li>
+                    <li>Pagos de tus comisiones semanales o quincenales, a tu elección</li>
+                    <li>Opción de cobro a domicilio: un miembro de nuestro equipo puede ir a tu ubicación</li>
+                    <li>Posibilidad de subir de nivel y aumentar tu ganancia</li>
+                    <li>Trabaja cuando quieras y desde donde quieras</li>
+                    <li>Respaldo total: nosotros resolvemos cualquier problema con la recarga</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Requisitos -->
+        <div class="seccion">
+            <h2 class="titulo-seccion">📝 Requisitos para unirte</h2>
+            <div class="tarjeta">
+                <ul>
+                    <li>Tener interés en ofrecer recargas de Free Fire a otras personas</li>
+                    <li>Ser mayor de edad o contar con autorización de tus padres/tutor</li>
+                    <li>Aceptar pagos en efectivo de tus clientes</li>
+                    <li>Poder depositar a nuestras cuentas oficiales o recibir la visita de nuestro equipo de cobro</li>
+                    <li>Tratar con respeto y honestidad a tus clientes</li>
+                    <li>Comunicarte con nosotros por los canales oficiales</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pasos para empezar -->
+        <div class="seccion">
+            <h2 class="titulo-seccion">📲 Pasos para empezar hoy</h2>
+            <div class="tarjeta">
+                <div class="pasos">
+                    <div class="paso">
+                        <h4 style="color:#e9d5ff; margin-bottom:5px;">Escríbenos por Messenger</h4>
+                        <p>Dinos que quieres ser afiliado y cuéntanos un poco sobre tu zona o negocio.</p>
+                    </div>
+                    <div class="paso">
+                        <h4 style="color:#e9d5ff; margin-bottom:5px;">Confirmamos tu registro</h4>
+                        <p>Te asignamos tu nivel, acordamos tu porcentaje y te damos tu reconocimiento oficial.</p>
+                    </div>
+                    <div class="paso">
+                        <h4 style="color:#e9d5ff; margin-bottom:5px;">Realiza el pago correspondiente</h4>
+                        <p>Tu cliente te paga en efectivo: restas tu ganancia y depositas el resto a nuestras cuentas, o esperas al miembro del equipo que irá a cobrar.</p>
+                    </div>
+                    <div class="paso">
+                        <h4 style="color:#e9d5ff; margin-bottom:5px;">Listo y sigue vendiendo</h4>
+                        <p>Nosotros procesamos la recarga y tú sigues acumulando más ventas y ganancias.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preguntas Frecuentes -->
+        <div class="seccion">
+            <h2 class="titulo-seccion">❓ Preguntas frecuentes</h2>
+            <div class="tarjeta">
+                <div class="faq-item">
+                    <div class="faq-pregunta">¿Debo pagar algo para inscribirme?</div>
+                    <div class="faq-respuesta">¡Nada! No hay costo de entrada ni pagos obligatorios.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-pregunta">¿Cómo se hace el pago a ElitePixels.store?</div>
+                    <div class="faq-respuesta">Tus clientes te pagan en efectivo. Tú restas tu ganancia acordada y depositas el resto a nuestras cuentas oficiales, o bien, puede ir un miembro de nuestro equipo hasta tu ubicación para realizar el cobro.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-pregunta">¿Tengo que vender una cantidad mínima?</div>
+                    <div class="faq-respuesta">No hay mínimo obligatorio, entre más vendas más ganas y puedes subir de nivel.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-pregunta">¿Qué pasa si hay un problema con una recarga?</div>
+                    <div class="faq-respuesta">Nosotros nos encargamos de solucionarlo completamente, tú solo avísanos.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-pregunta">¿Puedo vender también otros productos?</div>
+                    <div class="faq-respuesta">Sí, puedes combinarlo con tu negocio habitual sin problemas.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="seccion">
+            <h2 class="titulo-seccion">📞 Contáctanos oficialmente</h2>
+            <div class="tarjeta" style="text-align:center;">
+                <p>Para iniciar tu registro, resolver dudas o coordinar la forma de cobro, habla directamente con nosotros por nuestro canal oficial:</p>
+            </div>
+
+            <div class="contenedor-boton">
+                <a href="m.me/elitepixesstore" target="_blank" rel="noopener noreferrer" class="boton-messenger">
+                    <span class="icono-msj">💬</span>
+                    Unirme por Messenger
+                </a>
+                <p class="texto-boton">Te responderemos en muy poco tiempo para darte la bienvenida 🚀</p>
+            </div>
+        </div>
+
+        <!-- Pie -->
+        <div class="pie-pagina">
+            <p>Programa de Afiliados Oficial ElitePixels.store © 2026 | Recargas Verificadas en Guatemala</p>
+            <div class="frase-final">Crece con nosotros y haz crecer tu zona 🔥💎</div>
+        </div>
+    </div>
+
+    <!-- SCRIPT PRELOADER -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('oculto');
+            }, 1800);
+        });
+    </script>
+</body>
+</html>
