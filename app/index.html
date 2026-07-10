@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElitePixels - Vendedores Autorizados</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@741c24092788343c5b9f92dbecae9d3ae93ae837/file_00000000e7bc71f5844bdf8247e54e5c.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#7C3AED">
+    <meta name="description" content="Portal exclusivo para vendedores y afiliados ElitePixels - Recargas Free Fire">
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiRWxpdGVQaXhlbHMgLSBWZW5kZWRvcmVzIiwic2hvcnRfbmFtZSI6IkVsaXRlUGl4ZWxzIFZlbmRvciIsInN0YXJ0X3VybCI6IiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwQTA2MTIiLCJ0aGVtZV9jb2xvciI6IiI3QzNBQUVEIiwiaWNvbnMiOlt7InNvdXJjZSI6Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC9kbXh5dC9lbGl0ZXBpeGVscy5zdG9yZUB3NDEzYzI0MDkyNzg4MzQzYzViOWY5MmRiZWNhZTlkM2FlOTNhZTgzNy9maWxlXzAwMDAwMDAwZTdiYzcxZjU4NDRiZGY4MjQ3ZTVlNTRlNWMucG5nIiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3BuZyJ9XX0=">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+        * { font-family: 'Poppins', sans-serif; margin:0; padding:0; box-sizing:border-box; }
+        body { overflow-x:hidden; }
+
+        /* === PRELOADER === */
+        #preloader {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:linear-gradient(180deg, #0A0A12 0%, #150C24 100%);
+            display:flex; flex-direction:column; justify-content:center; align-items:center;
+            z-index:9999; transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #preloader.oculto { opacity:0; visibility:hidden; }
+        .logo-preloader { width:140px; margin-bottom:25px; animation: latido 1.5s infinite ease-in-out; }
+        .texto-preloader { font-size:18px; font-weight:600; background:linear-gradient(90deg, #7C3AED, #EC4899); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:20px; }
+        .barra-carga { width:220px; height:6px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden; }
+        .progreso { height:100%; background:linear-gradient(90deg, #7C3AED, #EC4899); border-radius:10px; animation: cargando 2s infinite ease-in-out; }
+        @keyframes latido { 0%,100% { transform:scale(1); } 50% { transform:scale(1.08); } }
+        @keyframes cargando { 0% { width:0%; margin-left:0; } 50% { width:60%; margin-left:20%; } 100% { width:0%; margin-left:100%; } }
+
+        /* === PANTALLA DE ACCESO === */
+        #pantalla-acceso {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:linear-gradient(180deg, #0A0A12 0%, #150C24 100%);
+            display:flex; flex-direction:column; justify-content:center; align-items:center;
+            z-index:9998; padding:20px;
+        }
+        #pantalla-acceso.oculto { opacity:0; visibility:hidden; }
+        .caja-acceso { width:100%; max-width:380px; background:rgba(255,255,255,0.05); border:1px solid #7C3AED; border-radius:16px; padding:30px; text-align:center; }
+        .input-pass { width:100%; padding:12px; border-radius:8px; border:1px solid #7C3AED; background:rgba(0,0,0,0.3); color:white; text-align:center; font-size:16px; margin:15px 0; outline:none; }
+        .input-pass:focus { border-color:#EC4899; box-shadow:0 0 10px rgba(236,72,153,0.3); }
+        .btn-acceso { width:100%; padding:12px; border-radius:8px; border:none; background:linear-gradient(90deg, #7C3AED, #EC4899); color:white; font-weight:bold; cursor:pointer; transition:0.3s; }
+        .btn-acceso:hover { transform:scale(1.03); }
+        .mensaje-error { color:#FF4F6D; font-size:14px; margin-top:10px; display:none; }
+
+        /* === ESTILOS GENERALES === */
+        #contenido-principal { display:none; }
+        .bg-main { background: linear-gradient(180deg, #0A0A12 0%, #150C24 100%); }
+        .card-diamante { background: linear-gradient(90deg, #1E2A5A 0%, #2D3A7A 100%); border: 2px solid #4F75FF; }
+        .card-pase { background: linear-gradient(90deg, #5A2E1E 0%, #7A3D2D 100%); border: 2px solid #FF9F4F; }
+        .card-semanal { background: linear-gradient(90deg, #4A1E5A 0%, #7A2D7A 100%); border: 2px solid #FF4FFF; }
+        .card-opcion { background: rgba(255,255,255,0.05); border: 1px solid rgba(124,58,237,0.3); transition:0.3s; }
+        .card-opcion:hover { border-color:#7C3AED; transform:translateY(-3px); }
+        .btn-compra { background: linear-gradient(90deg, #7C3AED 0%, #EC4899 100%); transition: all 0.3s ease; }
+        .btn-compra:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(124, 58, 237, 0.5); }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(236, 72, 153, 0); } 100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); } }
+        .glow-text { text-shadow: 0 0 10px rgba(236, 72, 153, 0.7); }
+        .aviso-exclusivo { background: rgba(124, 58, 237, 0.1); border: 1px solid #7C3AED; }
+        .acordeon { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+        .acordeon.abierto { max-height:500px; }
+        .boton-acordeon { cursor:pointer; user-select:none; }
+        .btn-copiar { background:linear-gradient(90deg, #10B981, #059669); transition:0.3s; }
+        .btn-copiar:hover { transform:scale(1.03); box-shadow:0 0 15px rgba(16,185,129,0.4); }
+        .copiado { background:#059669 !important; }
+    </style>
+</head>
+<body class="bg-main text-white min-h-screen">
+
+    <!-- === PRELOADER === -->
+    <div id="preloader">
+        <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@741c24092788343c5b9f92dbecae9d3ae93ae837/file_00000000e7bc71f5844bdf8247e54e5c.png" alt="ElitePixels" class="logo-preloader">
+        <h2 class="texto-preloader">Iniciando sistemas de distribuidores</h2>
+        <div class="barra-carga"><div class="progreso"></div></div>
+    </div>
+
+    <!-- === PANTALLA DE ACCESO CON CONTRASEÑA === -->
+    <div id="pantalla-acceso">
+        <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@741c24092788343c5b9f92dbecae9d3ae93ae837/file_00000000e7bc71f5844bdf8247e54e5c.png" alt="ElitePixels" class="h-20 w-20 rounded-xl mb-4">
+        <div class="caja-acceso">
+            <h2 class="text-xl font-bold mb-2">Acceso Exclusivo</h2>
+            <p class="text-sm text-gray-300 mb-4">Ingresa tu contraseña de vendedor</p>
+            <input type="password" id="contrasena" class="input-pass" placeholder="Escribe tu contraseña aquí">
+            <button onclick="verificarAcceso()" class="btn-acceso">Ingresar</button>
+            <div id="mensaje-error" class="mensaje-error">Contraseña incorrecta, intenta nuevamente</div>
+        </div>
+    </div>
+
+    <!-- === CONTENIDO PRINCIPAL (SOLO VISIBLE SI ACCEDE) === -->
+    <div id="contenido-principal">
+        <!-- === CABECERA === -->
+        <header class="sticky top-0 z-50 bg-black/60 backdrop-blur-md border-b border-purple-800/60">
+            <div class="container mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@741c24092788343c5b9f92dbecae9d3ae93ae837/file_00000000e7bc71f5844bdf8247e54e5c.png" alt="ElitePixels Logo" class="h-14 w-14 rounded-xl">
+                    <div>
+                        <h1 class="text-2xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">ElitePixels.store</h1>
+                        <p id="estado-vendedor" class="text-xs text-purple-300 font-semibold">Portal Exclusivo Vendedores</p>
+                    </div>
+                </div>
+                <div id="etiqueta-acceso" class="flex items-center gap-2 bg-yellow-500/20 px-3 py-1 rounded-full">
+                    <i class="fa fa-user-circle text-yellow-400"></i>
+                    <span id="texto-acceso" class="text-sm font-semibold text-yellow-300">Acceso Autorizado</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="container mx-auto px-4 mt-6">
+            <div class="aviso-exclusivo rounded-xl p-4 text-center">
+                <i class="fa fa-lock text-purple-400 text-2xl mb-2"></i>
+                <h3 class="font-bold text-lg mb-1">ZONA EXCLUSIVA DE DISTRIBUIDORES</h3>
+                <p class="text-sm text-gray-300">Precios y beneficios solo para afiliados registrados.</p>
+            </div>
+        </section>
+
+        <main class="container mx-auto px-4 py-6">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-4xl font-black mb-3 glow-text">LISTA DE PRECIOS MAYORISTAS</h2>
+                <p class="text-lg text-gray-300 mb-4">Tarifas especiales para tu red de ventas 🤝💎</p>
+                <!-- BOTÓN DE COPIAR LISTA -->
+                <button id="btnCopiar" onclick="copiarLista()" class="btn-copiar px-6 py-3 rounded-xl font-bold flex items-center gap-2 mx-auto">
+                    <i class="fa fa-copy"></i> Copiar lista completa de precios
+                </button>
+            </div>
+
+            <!-- === PAQUETES DE DIAMANTES === -->
+            <section class="mb-10">
+                <h3 class="text-xl font-bold mb-5 flex items-center gap-2">
+                    <i class="fa fa-diamond text-cyan-400"></i> Paquetes de Diamantes
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">110 Diamantes</span></div>
+                        <div class="text-right"><p class="text-2xl font-black text-yellow-300">Q15</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20110%20diamantes%20por%20Q15" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div>
+                    </div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">341 Diamantes</span></div>
+                        <div class="text-right"><p class="text-2xl font-black text-yellow-300">Q35</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20341%20diamantes%20por%20Q35" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div>
+                    </div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">572 Diamantes</span></div>
+                        <div class="text-right"><p class="text-2xl font-black text-yellow-300">Q50</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20572%20diamantes%20por%20Q50" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div>
+                    </div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">1.166 Diamantes</span></div>
+                        <div class="text-right"><p class="text-2xl font-black text-yellow-300">Q100</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%201.166%20diamantes%20por%20Q100" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div>
+                    </div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">2.398 Diamantes</span></div>
+                        <div class="text-right"><p class="text-2xl font-black text-yellow-300">Q215</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%202.398%20diamantes%20por%20Q215" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div>
+                    </div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">6.160 Diamantes</span></div>
+                        <div class="text-right"><p class="text-2xl font-black text-yellow-300">Q450</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%206.160%20diamantes%20por%20Q450" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- === PRODUCTOS ADICIONALES === -->
+            <section class="mb-10">
+                <h3 class="text-xl font-bold mb-5 flex items-center gap-2">
+                    <i class="fa fa-plus-circle text-pink-400"></i> Otros Productos
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card-pase rounded-xl p-5 flex flex-col justify-between">
+                        <div class="flex items-center gap-3 mb-3"><i class="fa fa-shield text-3xl text-orange-300"></i><h4 class="text-xl font-bold">Pase de Batalla</h4></div>
+                        <p class="text-3xl font-black text-yellow-300 mb-3">30Q</p>
+                        <a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20Pase%20de%20Batalla%20por%20Q30" class="btn-compra px-4 py-2 rounded-lg text-center font-semibold">Solicitar</a>
+                    </div>
+                    <div class="card-semanal rounded-xl p-5 flex flex-col justify-between">
+                        <div class="flex items-center gap-3 mb-3"><i class="fa fa-calendar text-3xl text-pink-300"></i><h4 class="text-xl font-bold">Pase Semanal</h4></div>
+                        <p class="text-sm text-gray-300 mb-1">(150 diamantes incluidos)</p>
+                        <p class="text-3xl font-black text-pink-300 mb-3">15Q</p>
+                        <a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20Pase%20Semanal%20por%20Q15" class="btn-compra px-4 py-2 rounded-lg text-center font-semibold">Solicitar</a>
+                    </div>
+                    <div class="card-opcion rounded-xl p-5 flex flex-col justify-between">
+                        <div class="flex items-center gap-3 mb-3"><i class="fa fa-star text-3xl text-purple-300"></i><h4 class="text-xl font-bold">Pase Élite + Niveles</h4></div>
+                        <p class="text-sm text-gray-300 mb-1">Desbloqueo inmediato</p>
+                        <p class="text-3xl font-black text-purple-300 mb-3">55Q</p>
+                        <a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20Pase%20%C3%89lite%20%2B%20Niveles%20por%20Q55" class="btn-compra px-4 py-2 rounded-lg text-center font-semibold">Solicitar</a>
+                    </div>
+                    <div class="card-opcion rounded-xl p-5 flex flex-col justify-between">
+                        <div class="flex items-center gap-3 mb-3"><i class="fa fa-gift text-3xl text-green-300"></i><h4 class="text-xl font-bold">Cajas y Cosméticos</h4></div>
+                        <p class="text-sm text-gray-300 mb-1">Skins, armas y mascotas</p>
+                        <p class="text-lg font-semibold text-green-300 mb-3">Consulta precios</p>
+                        <a href="https://m.me/elitepixels?text=Vendedor%20-%20Quiero%20precios%20de%20cajas%20y%20cosm%C3%A9ticos" class="btn-compra px-4 py-2 rounded-lg text-center font-semibold">Consultar</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- === RECURSOS === -->
+            <section class="mb-10">
+                <h3 class="text-xl font-bold mb-5 flex items-center gap-2">
+                    <i class="fa fa-wrench text-cyan-400"></i> Recursos
+                </h3>
+                <div class="card-opcion rounded-xl p-4 flex items-center gap-4">
+                    <i class="fa fa-file-image-o text-2xl text-pink-400"></i>
+                    <div><h4 class="font-bold">Material Publicitario</h4><p class="text-sm text-gray-400">Imágenes y textos listos para compartir</p></div>
+                    <a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20material%20publicitario" class="btn-compra px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap">Solicitar</a>
+                </div>
+                <div class="card-opcion rounded-xl p-4 flex items-center gap-4 mt-3">
+                    <i class="fa fa-headphones text-2xl text-blue-400"></i>
+                    <div><h4 class="font-bold">Soporte Prioritario</h4><p class="text-sm text-gray-400">Atención rápida para tus dudas</p></div>
+                    <a href="https://m.me/elitepixels?text=Vendedor%20-%20Necesito%20soporte%20prioritario" class="btn-compra px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap">Contactar</a>
+                </div>
+            </section>
+
+            <!-- === PREGUNTAS FRECUENTES === -->
+            <section class="bg-white/5 rounded-xl p-5 mb-10 border border-purple-900/50">
+                <h3 class="text-lg font-bold mb-4 text-center">Preguntas Frecuentes</h3>
+                <div class="space-y-3">
+                    <div class="border-b border-purple-900/30 pb-3">
+                        <div class="boton-acordeon flex justify-between items-center font-semibold" onclick="toggleAcordeon(this)">
+                            <span>¿Cómo se confirma mi cuenta de vendedor?</span>
+                            <i class="fa fa-chevron-down transition-transform"></i>
+                        </div>
+                        <div class="acordeon text-sm text-gray-300 mt-2">Solo envía tu nombre completo y referencia de la primera compra por Messenger, y activaremos tus beneficios en menos de 1 hora.</div>
+                    </div>
+                    <div class="border-b border-purple-900/30 pb-3">
+                        <div class="boton-acordeon flex justify-between items-center font-semibold" onclick="toggleAcordeon(this)">
+                            <span>¿Cuánto tiempo tarda la entrega?</span>
+                            <i class="fa fa-chevron-down transition-transform"></i>
+                        </div>
+                        <div class="acordeon text-sm text-gray-300 mt-2">Entrega inmediata en horario de atención, máximo 15 minutos en horas pico.</div>
+                    </div>
+                    <div class="pb-3">
+                        <div class="boton-acordeon flex justify-between items-center font-semibold" onclick="toggleAcordeon(this)">
+                            <span>¿Puedo modificar los precios a mis clientes?</span>
+                            <i class="fa fa-chevron-down transition-transform"></i>
+                        </div>
+                        <div class="acordeon text-sm text-gray-300 mt-2">Sí, tú decides el precio final al público, estos son tus costos base para calcular tu ganancia.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- === BOTONES PRINCIPALES === -->
+            <section class="text-center space-y-4">
+                <a href="https://m.me/elitepixels" target="_blank" class="block w-full max-w-md mx-auto btn-compra pulse px-6 py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-3">
+                    <i class="fa fa-facebook-messenger"></i> Contactar como Vendedor
+                </a>
+                <button id="installBtn" class="hidden w-full max-w-md mx-auto bg-green-600 hover:bg-green-700 px-6 py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                    <i class="fa fa-download"></i> Instalar App en tu celular
+                </button>
+            </section>
+        </main>
+
+        <footer class="bg-black/40 border-t border-purple-900/50 py-6 mt-10">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm text-gray-400 mb-2">© 2026 ElitePixels.store - Acceso exclusivo para vendedores autorizados</p>
+                <p class="text-xs text-gray-500">No compartas esta información con usuarios no registrados</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- === SCRIPTS === -->
+    <script>
+        // Ocultar preloader
+        window.addEventListener('load', () => { setTimeout(() => { document.getElementById('preloader').classList.add('oculto'); }, 2200); });
+
+        // === SISTEMA DE ACCESO CON CONTRASEÑA ===
+        const vendedores = {
+            "elite03": "Fer",
+            "elite02": "Martita",
+            "elite01": "Gudiel"
+        };
+
+        function verificarAcceso() {
+            const pass = document.getElementById('contrasena').value.trim();
+            const error = document.getElementById('mensaje-error');
+            const nombre = vendedores[pass];
+
+            if(nombre) {
+                // Mostrar mensaje de bienvenida personalizado
+                document.getElementById('estado-vendedor').textContent = `¡Bienvenido, ${nombre}!`;
+                // Cambiar a "Acceso Autorizado" después de 3 segundos
+                setTimeout(() => {
+                    document.getElementById('estado-vendedor').textContent = "Portal Exclusivo Vendedores";
+                }, 3000);
+                // Ocultar pantalla de acceso y mostrar contenido
+                document.getElementById('pantalla-acceso').classList.add('oculto');
+                document.getElementById('contenido-principal').style.display = 'block';
+            } else {
+                error.style.display = 'block';
+                setTimeout(() => { error.style.display = 'none'; }, 3000);
+            }
+        }
+
+        // Permitir presionar Enter para ingresar
+        document.getElementById('contrasena').addEventListener('keydown', (e) => {
+            if(e.key === 'Enter') verificarAcceso();
+        });
+
+        // === COPIAR LISTA DE PRECIOS ===
+        function copiarLista() {
+            const textoLista = `📋 LISTA DE PRECIOS MAYORISTAS - ELITEPIXELS
+----------------------------------------
+💎 PAQUETES DE DIAMANTES
+• 110 Diamantes → Q15
+• 341 Diamantes → Q35
+• 572 Diamantes → Q50
+• 1.166 Diamantes → Q100
+• 2.398 Diamantes → Q215
+• 6.160 Diamantes → Q450
+
+🎁 OTROS PRODUCTOS
+• Pase de Batalla → Q30
+• Pase Semanal (150 diamantes) → Q15
+• Pase Élite + Niveles → Q55
+• Cajas y Cosméticos → Consultar precios
+
+✅ Entrega inmediata | Soporte prioritario
+Precios exclusivos para vendedores autorizados`;
+
+            navigator.clipboard.writeText(textoLista).then(() => {
+                const btn = document.getElementById('btnCopiar');
+                btn.innerHTML = '<i class="fa fa-check"></i> ¡Lista copiada correctamente!';
+                btn.classList.add('copiado');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa fa-copy"></i> Copiar lista completa de precios';
+                    btn.classList.remove('copiado');
+                }, 3000);
+            });
+        }
+
+        // Acordeón de preguntas
+        function toggleAcordeon(elemento) {
+            const contenido = elemento.nextElementSibling;
+            const icono = elemento.querySelector('i');
+            contenido.classList.toggle('abierto');
+            icono.style.transform = contenido.classList.contains('abierto') ? 'rotate(180deg)' : 'rotate(0)';
+        }
+
+        // Instalación de App
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; installBtn.classList.remove('hidden'); });
+        installBtn.addEventListener('click', async () => { if (deferredPrompt) { deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; installBtn.classList.add('hidden'); } });
+        window.addEventListener('appinstalled', () => { installBtn.classList.add('hidden'); deferredPrompt = null; });
+    </script>
+</body>
+</html>
