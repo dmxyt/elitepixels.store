@@ -3,186 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElitePixels.store - Recarga Diamantes Free Fire</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ElitePixels.store - Recargas Free Fire</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
+        /* ---------------- PRELOADER ---------------- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top, #3b0764 0%, #1a0533 50%, #0f021e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #preloader.oculto {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .logo-preloader {
+            max-width: 300px;
+            width: 80%;
+            animation: girarSuave 2s ease-in-out infinite, brillo 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes girarSuave {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(2deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes brillo {
+            from { filter: drop-shadow(0 0 15px rgba(192, 132, 252, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(240, 171, 252, 0.8)); }
+        }
+        /* ---------------- FIN PRELOADER ---------------- */
+
         body {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f45 50%, #2b1b58 100%);
-            color: white;
+            background: radial-gradient(circle at top, #3b0764 0%, #1a0533 50%, #0f021e 100%);
+            color: #fff;
             min-height: 100vh;
-            padding: 20px 10px;
+            padding: 30px 15px;
         }
 
         .contenedor {
-            max-width: 900px;
+            max-width: 850px;
             margin: 0 auto;
-            background: rgba(10, 14, 39, 0.85);
+            background: rgba(20, 5, 40, 0.9);
             border-radius: 24px;
-            padding: 35px 25px;
-            box-shadow: 0 0 50px rgba(80, 120, 255, 0.35);
-            border: 2px solid #4a7aff;
-            backdrop-filter: blur(10px);
-            animation: aparecer 0.8s ease forwards;
-            opacity: 0;
+            padding: 40px 25px;
+            box-shadow: 0 0 60px rgba(168, 85, 247, 0.25);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            backdrop-filter: blur(8px);
         }
 
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Encabezado con logo */
+        /* Encabezado */
         .encabezado {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 45px;
         }
 
         .logo {
-            max-width: 420px;
+            max-width: 380px;
             width: 100%;
             margin-bottom: 20px;
-            border-radius: 12px;
-            filter: drop-shadow(0 0 15px rgba(74, 194, 255, 0.4));
+            border-radius: 16px;
+            box-shadow: 0 0 25px rgba(192, 132, 252, 0.4);
         }
 
         .titulo-principal {
-            font-size: 2.6rem;
-            color: #4ac2ff;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px #4ac2ff;
-            margin-bottom: 10px;
-            font-weight: 900;
+            font-size: 2.4rem;
+            color: #c084fc;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
         }
 
         .subtitulo {
-            font-size: 1.7rem;
-            color: #ffd04a;
-            text-transform: uppercase;
-            text-shadow: 0 0 12px #ffd04a;
-            font-weight: 700;
+            font-size: 1.4rem;
+            color: #e9d5ff;
+            font-weight: 400;
+            margin-bottom: 20px;
         }
 
         .descripcion {
-            margin: 25px 0;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.7;
-            color: #e0e6ff;
+            color: #d8b4fe;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         /* Botón Messenger */
         .boton-messenger {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 12px;
-            background: linear-gradient(135deg, #00C6FF, #0072FF);
+            background: linear-gradient(135deg, #0099ff, #0066cc);
             color: white;
-            font-size: 1.3rem;
-            font-weight: bold;
-            padding: 18px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 18px 40px;
             border-radius: 50px;
             text-decoration: none;
-            margin: 25px 0;
-            box-shadow: 0 5px 20px rgba(0, 114, 255, 0.45);
+            margin: 30px 0;
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
             transition: all 0.3s ease;
-            border: 2px solid rgba(255,255,255,0.3);
-            width: 100%;
-            max-width: 450px;
+            border: none;
         }
 
         .boton-messenger:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(0, 114, 255, 0.6);
-            background: linear-gradient(135deg, #0099E6, #005FD1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.5);
         }
 
         .icono-msj {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
         }
 
-        /* Tabla de precios */
+        /* Sección Precios */
         .seccion-precios {
-            margin: 40px 0;
+            margin: 45px 0;
         }
 
         .titulo-seccion {
-            font-size: 1.8rem;
-            color: #a8c7ff;
-            text-transform: uppercase;
-            border-bottom: 3px solid #ffd04a;
-            padding-bottom: 10px;
+            font-size: 1.6rem;
+            color: #f0abfc;
+            text-align: center;
             margin-bottom: 25px;
-            font-weight: 800;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(240, 171, 252, 0.3);
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .tabla-precios {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            background: rgba(25, 35, 70, 0.9);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid #4a5a99;
+            background: rgba(45, 11, 82, 0.6);
         }
 
         .tabla-precios tr {
-            transition: all 0.25s ease;
+            transition: background 0.3s ease;
         }
 
         .tabla-precios tr:hover {
-            background: rgba(74, 122, 255, 0.15);
+            background: rgba(168, 85, 247, 0.2);
+        }
+
+        .tabla-precios td {
+            padding: 18px 25px;
+            font-size: 1.15rem;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         .tabla-precios tr:last-child td {
             border-bottom: none;
         }
 
-        .tabla-precios td {
-            padding: 18px 22px;
-            font-size: 1.2rem;
-            border-bottom: 1px solid #4a5a99;
-        }
-
         .cantidad {
             text-align: left;
-            color: #a8d8ff;
-            font-weight: bold;
+            color: #e9d5ff;
+            font-weight: 500;
         }
 
         .precio {
             text-align: right;
-            color: #ffd04a;
-            font-weight: bold;
-            font-size: 1.35rem;
+            color: #f0abfc;
+            font-weight: 700;
+            font-size: 1.25rem;
         }
 
-        .icono-diamante {
-            color: #4ac2ff;
+        .icono-item {
             margin-right: 12px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
-        /* Secciones laterales */
-        .fila-doble {
-            display: flex;
-            flex-wrap: wrap;
+        /* Bloques informativos */
+        .contenedor-bloques {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin: 40px 0;
         }
 
         .bloque {
-            flex: 1 1 360px;
-            background: rgba(25, 35, 70, 0.9);
+            background: rgba(45, 11, 82, 0.5);
             border-radius: 16px;
-            padding: 28px;
-            border: 1px solid #5a7aff;
+            padding: 25px;
+            border-left: 4px solid #a855f7;
             transition: transform 0.3s ease;
         }
 
@@ -191,20 +215,18 @@
         }
 
         .bloque h3 {
-            color: #ffd04a;
-            font-size: 1.5rem;
-            margin-bottom: 18px;
-            text-transform: uppercase;
-            font-weight: 800;
+            color: #f0abfc;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .bloque p, .bloque li {
-            color: #e0e6ff;
-            line-height: 1.75;
-            font-size: 1.08rem;
+            color: #d8b4fe;
+            line-height: 1.6;
+            font-size: 1rem;
         }
 
         .bloque ul {
@@ -213,183 +235,154 @@
         }
 
         .bloque li {
-            padding: 6px 0;
+            margin-bottom: 8px;
+            padding-left: 5px;
         }
 
         .bloque li::before {
-            content: "⭐ ";
-            color: #ffd04a;
-            margin-right: 10px;
+            content: "✓";
+            color: #c084fc;
             font-weight: bold;
+            margin-right: 10px;
         }
 
         /* Métodos de pago */
         .metodos-pago {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .metodo {
-            text-align: center;
-            padding: 16px 18px;
-            background: rgba(40, 55, 100, 0.8);
-            border-radius: 12px;
-            min-width: 160px;
-            font-weight: 600;
-            border: 1px solid rgba(255,208,74,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .metodo:hover {
-            background: rgba(255,208,74,0.15);
-            transform: translateY(-3px);
-        }
-
-        .metodo small {
-            display: block;
-            font-weight: normal;
-            color: #c0cfff;
-            margin-top: 6px;
-            font-size: 0.85rem;
+            background: rgba(168, 85, 247, 0.15);
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #e9d5ff;
+            font-weight: 500;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         /* Pie de página */
         .pie-pagina {
             text-align: center;
-            margin-top: 45px;
-            padding: 30px 25px;
-            background: rgba(255, 210, 74, 0.1);
-            border-radius: 16px;
-            border: 2px solid #ffd04a;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(240, 171, 252, 0.3);
         }
 
         .pie-pagina p {
-            font-size: 1.2rem;
-            color: #ffd04a;
-            font-weight: bold;
-            margin-bottom: 12px;
+            font-size: 1.1rem;
+            color: #d8b4fe;
+            margin-bottom: 15px;
         }
 
         .frase-final {
-            font-size: 1.4rem;
-            color: #ff6b4a;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-top: 20px;
-            text-shadow: 0 0 10px rgba(255,107,74,0.4);
+            font-size: 1.2rem;
+            color: #f0abfc;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        /* Adaptación móvil perfecta */
-        @media (max-width: 700px) {
-            .contenedor { padding: 25px 18px; }
-            .logo { max-width: 300px; }
-            .titulo-principal { font-size: 2rem; }
-            .subtitulo { font-size: 1.3rem; }
-            .descripcion { font-size: 1.05rem; }
-            .boton-messenger { font-size: 1.15rem; padding: 15px 25px; }
-            .tabla-precios td { padding: 15px 12px; font-size: 1rem; }
-            .precio { font-size: 1.15rem; }
-            .fila-doble { gap: 20px; }
-            .bloque { padding: 20px; flex: 1 1 100%; }
-            .bloque h3 { font-size: 1.3rem; }
-            .frase-final { font-size: 1.2rem; }
-            .metodo { min-width: 140px; padding: 14px 12px; }
+        /* Móvil */
+        @media (max-width: 600px) {
+            .titulo-principal { font-size: 1.8rem; }
+            .subtitulo { font-size: 1.2rem; }
+            .boton-messenger { font-size: 1.1rem; padding: 15px 30px; }
+            .tabla-precios td { padding: 15px; font-size: 1rem; }
+            .precio { font-size: 1.1rem; }
+            .contenedor { padding: 25px 15px; }
+            .logo-preloader { max-width: 220px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@62eb006f94e3f243795242fdeb70db7d178a218d/file_00000000e7bc71f5844bdf8247e54e5c.png" 
+             alt="Cargando ElitePixels.store" class="logo-preloader">
+    </div>
+
     <div class="contenedor">
-        <!-- Encabezado con tu logo oficial -->
+        <!-- Encabezado -->
         <div class="encabezado">
             <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@62eb006f94e3f243795242fdeb70db7d178a218d/file_00000000e7bc71f5844bdf8247e54e5c.png" 
-                 alt="ElitePixels.store" 
-                 class="logo"
-                 loading="lazy">
+                 alt="ElitePixels.store" class="logo" loading="lazy">
             
-            <h1 class="titulo-principal">¡Recarga Diamantes de Free Fire!</h1>
-            <h2 class="subtitulo">En ElitePixels.store</h2>
+            <h1 class="titulo-principal">Recargas de Free Fire</h1>
+            <h2 class="subtitulo">Calidad y confianza en ElitePixels.store</h2>
             <p class="descripcion">
-                ¿Buscas un servicio rápido, seguro y confiable para recargar tus diamantes? 
-                En <strong>ElitePixels.store</strong> tenemos las mejores promociones y precios de todo Guatemala 🇬🇹 para que disfrutes al máximo de Free Fire.
+                Consigue tus diamantes, pases y mucho más con total seguridad. Entregas rápidas y los mejores precios de Guatemala.
             </p>
 
-            <!-- BOTÓN MESSENGER FUNCIONAL -->
-            <a href="https://m.me/elitepixelsstore?text=¡Hola!%20Quiero%20comprar%20diamantes%20de%20Free%20Fire%20en%20ElitePixels.store%20💎" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="boton-messenger">
-                <span class="icono-msj"><i class="fab fa-facebook-messenger"></i></span>
-                Comprar por Messenger
+            <a href="m.me/elitepixesstore" target="_blank" rel="noopener noreferrer" class="boton-messenger">
+                <span class="icono-msj">💬</span>
+                Pedir por Messenger
             </a>
         </div>
 
-        <!-- Tabla de precios oficiales -->
+        <!-- Tabla de precios -->
         <div class="seccion-precios">
-            <h2 class="titulo-seccion">💎 Precios Oficiales en Quetzales</h2>
+            <h2 class="titulo-seccion">💎 Lista de Precios</h2>
             <table class="tabla-precios">
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 110 Diamantes</td><td class="precio">Q 15.00</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 341 Diamantes</td><td class="precio">Q 35.00</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 572 Diamantes</td><td class="precio">Q 50.00</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 1.166 Diamantes</td><td class="precio">Q 100.00</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 2.398 Diamantes</td><td class="precio">Q 215.00</td></tr>
-                <tr><td class="cantidad"><span class="icono-diamante">💎</span> 6.160 Diamantes</td><td class="precio">Q 450.00</td></tr>
+                <tr><td class="cantidad"><span class="icono-item">💎</span> 110 Diamantes</td><td class="precio">Q15</td></tr>
+                <tr><td class="cantidad"><span class="icono-item">💎</span> 341 Diamantes</td><td class="precio">Q35</td></tr>
+                <tr><td class="cantidad"><span class="icono-item">💎</span> 572 Diamantes</td><td class="precio">Q50</td></tr>
+                <tr><td class="cantidad"><span class="icono-item">💎</span> 1.166 Diamantes</td><td class="precio">Q100</td></tr>
+                <tr><td class="cantidad"><span class="icono-item">💎</span> 2.398 Diamantes</td><td class="precio">Q215</td></tr>
+                <tr><td class="cantidad"><span class="icono-item">💎</span> 6.160 Diamantes</td><td class="precio">Q450</td></tr>
+                <tr><td class="cantidad"><span class="icono-item">🎫</span> Pase Semanal</td><td class="precio">Q15</td></tr>
+                <tr><td class="cantidad"><span class="icono-item">🏆</span> Pase de Batalla</td><td class="precio">Q30</td></tr>
             </table>
         </div>
 
-        <!-- Secciones de beneficios y pagos -->
-        <div class="fila-doble">
+        <!-- Bloques de información -->
+        <div class="contenedor-bloques">
             <div class="bloque">
-                <h3><i class="fas fa-gift"></i> Bonificación Especial</h3>
-                <p>
-                    Si es la primera vez que recargas en tu cuenta y nunca has comprado diamantes anteriormente, 
-                    Garena te regala un <strong>100% de bonificación extra</strong> según sus promociones vigentes. ¡Duplica tus diamantes!
-                </p>
+                <h3>🎁 Bonificación Especial</h3>
+                <p>Si es tu primera recarga en la cuenta, Garena puede regalarte diamantes extra según sus promociones vigentes.</p>
             </div>
 
             <div class="bloque">
-                <h3><i class="fas fa-credit-card"></i> Métodos de Pago Disponibles</h3>
+                <h3>💳 Formas de Pago</h3>
                 <div class="metodos-pago">
-                    <div class="metodo">
-                        🏦 Banrural
-                        <small>Depósito o Transferencia</small>
-                    </div>
-                    <div class="metodo">
-                        🏦 Banco Industrial
-                        <small>Depósito o Transferencia</small>
-                    </div>
-                    <div class="metodo">
-                        🏦 BAC Credomatic
-                        <small>Depósito o Transferencia</small>
-                    </div>
-                    <div class="metodo">
-                        💳 Nexa
-                        <small>Pago digital inmediato</small>
-                    </div>
+                    <div class="metodo">Banrural</div>
+                    <div class="metodo">Banco Industrial</div>
+                    <div class="metodo">Bac Credomatic</div>
+                    <div class="metodo">Nexa</div>
+                    <div class="metodo">Transferencia</div>
+                    <div class="metodo">Depósito</div>
                 </div>
-                <p style="margin-top:15px; font-size:0.95rem;">Te compartimos los datos completos al escribirnos por Messenger.</p>
             </div>
         </div>
 
-        <!-- Por qué elegirnos -->
         <div class="bloque">
-            <h3><i class="fas fa-check-circle"></i> ¿Por qué elegir ElitePixels.store?</h3>
+            <h3>✅ ¿Por qué elegirnos?</h3>
             <ul>
-                <li>✅ Atención rápida y personalizada todos los días</li>
-                <li>✅ Recargas 100% seguras y garantizadas, sin riesgos</li>
-                <li>✅ Los precios más bajos y competitivos de Guatemala</li>
-                <li>✅ Entrega inmediata después de confirmar el pago</li>
-                <li>✅ No pedimos tu contraseña, solo tu ID de jugador</li>
+                <li>Atención inmediata y personalizada</li>
+                <li>Recargas 100% seguras y garantizadas</li>
+                <li>Los precios más bajos del mercado</li>
+                <li>Múltiples opciones de pago</li>
+                <li>Entregas rápidas sin complicaciones</li>
             </ul>
         </div>
 
-        <!-- Pie de página -->
+        <!-- Pie -->
         <div class="pie-pagina">
-            <p>📩 Contáctanos hoy mismo y recibe información sobre promociones exclusivas.</p>
-            <div class="frase-final">En ElitePixels.store, tu diversión comienza con una recarga segura 🔥</div>
+            <p>Contáctanos para cualquier duda o promoción especial</p>
+            <div class="frase-final">¡Tu mejor experiencia de juego empieza aquí! 🔥</div>
         </div>
     </div>
+
+    <!-- SCRIPT PARA OCULTAR EL PRELOADER -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('oculto');
+            }, 1800); // Tiempo que se ve el preloader (1.8 segundos)
+        });
+    </script>
 </body>
 </html>
