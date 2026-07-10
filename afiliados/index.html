@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElitePixels - Vendedores</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@741c24092788343c5b9f92dbecae9d3ae93ae837/file_00000000e7bc71f5844bdf8247e54e5c.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#7C3AED">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ElitePixels">
+    <meta name="description" content="Portal exclusivo para vendedores ElitePixels">
+
+    <!-- MANIFEST INCRUSTADO (no necesitas archivo separado) -->
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIkVsaXRlUGl4ZWxzIC0gVmVuzGVkb3JlcyIsCiAgInNob3J0X25hbWUiOiAiRWxpdGVQaXhlbHMiLAogICJkZXNjcmlwdGlvbiI6ICJQb3J0YWwgZXhjbHVzaXZvIHBhcmEgdmllbmRvcmVzIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwQTA2MTIiLAogICJ0aGVtZV9jb2xvciI6ICIjN0MzQUVECiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQtcHJpbWFyeSIsCiAgImljb25zIjogWwogICAgewogICAgICAic291cmNlIjogImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC9kbXh5dC9lbGl0ZXBpeGVscy5zdG9yZUB3NDEzYzI0MDkyNzg4MzQzYzViOWY5MmRiZWNhZTlkM2FlOTNhZTgzNy9maWxlXzAwMDAwMDAwZTdiYzcxZjU4NDRiZGY4MjQ3ZTVlNTRlNWMucG5nIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9LAogICAgewogICAgICAic291cmNlIjogImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC9kbXh5dC9lbGl0ZXBpeGVscy5zdG9yZUB3NDEzYzI0MDkyNzg4MzQzYzViOWY5MmRiZWNhZTlkM2FlOTNhZTgzNy9maWxlXzAwMDAwMDAwZTdiYzcxZjU4NDRiZGY4MjQ3ZTVlNTRlNWMucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXQp9">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+        * { font-family: 'Poppins', sans-serif; margin:0; padding:0; box-sizing:border-box; }
+        body { overflow-x:hidden; }
+        #preloader { position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(180deg, #0A0A12 0%, #150C24 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:9999; transition: opacity 0.5s ease, visibility 0.5s ease; }
+        #preloader.oculto { opacity:0; visibility:hidden; }
+        .logo-preloader { width:140px; margin-bottom:25px; animation: latido 1.5s infinite ease-in-out; }
+        .texto-preloader { font-size:18px; font-weight:600; background:linear-gradient(90deg, #7C3AED, #EC4899); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:20px; }
+        .barra-carga { width:220px; height:6px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden; }
+        .progreso { height:100%; background:linear-gradient(90deg, #7C3AED, #EC4899); border-radius:10px; animation: cargando 2s infinite ease-in-out; }
+        @keyframes latido { 0%,100% { transform:scale(1); } 50% { transform:scale(1.08); } }
+        @keyframes cargando { 0% { width:0%; margin-left:0; } 50% { width:60%; margin-left:20%; } 100% { width:0%; margin-left:100%; } }
+        #pantalla-acceso { position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(180deg, #0A0A12 0%, #150C24 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:9998; padding:20px; }
+        #pantalla-acceso.oculto { opacity:0; visibility:hidden; }
+        .caja-acceso { width:100%; max-width:380px; background:rgba(255,255,255,0.05); border:1px solid #7C3AED; border-radius:16px; padding:30px; text-align:center; }
+        .input-pass { width:100%; padding:12px; border-radius:8px; border:1px solid #7C3AED; background:rgba(0,0,0,0.3); color:white; text-align:center; font-size:16px; margin:15px 0; outline:none; }
+        .input-pass:focus { border-color:#EC4899; box-shadow:0 0 10px rgba(236,72,153,0.3); }
+        .btn-acceso { width:100%; padding:12px; border-radius:8px; border:none; background:linear-gradient(90deg, #7C3AED, #EC4899); color:white; font-weight:bold; cursor:pointer; transition:0.3s; }
+        .btn-acceso:hover { transform:scale(1.03); }
+        .mensaje-error { color:#FF4F6D; font-size:14px; margin-top:10px; display:none; }
+        #contenido-principal { display:none; }
+        .bg-main { background: linear-gradient(180deg, #0A0A12 0%, #150C24 100%); }
+        .card-diamante { background: linear-gradient(90deg, #1E2A5A 0%, #2D3A7A 100%); border: 2px solid #4F75FF; }
+        .card-pase { background: linear-gradient(90deg, #5A2E1E 0%, #7A3D2D 100%); border: 2px solid #FF9F4F; }
+        .card-semanal { background: linear-gradient(90deg, #4A1E5A 0%, #7A2D7A 100%); border: 2px solid #FF4FFF; }
+        .card-opcion { background: rgba(255,255,255,0.05); border: 1px solid rgba(124,58,237,0.3); transition:0.3s; }
+        .card-opcion:hover { border-color:#7C3AED; transform:translateY(-3px); }
+        .btn-compra { background: linear-gradient(90deg, #7C3AED 0%, #EC4899 100%); transition: all 0.3s ease; }
+        .btn-compra:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(124, 58, 237, 0.5); }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(236, 72, 153, 0); } 100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); } }
+        .glow-text { text-shadow: 0 0 10px rgba(236, 72, 153, 0.7); }
+        .aviso-exclusivo { background: rgba(124, 58, 237, 0.1); border: 1px solid #7C3AED; }
+        .acordeon { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+        .acordeon.abierto { max-height:500px; }
+        .boton-acordeon { cursor:pointer; user-select:none; }
+        .btn-copiar { background:linear-gradient(90deg, #10B981, #059669); transition:0.3s; }
+        .btn-copiar:hover { transform:scale(1.03); box-shadow:0 0 15px rgba(16,185,129,0.4); }
+        .copiado { background:#059669 !important; }
+        .modal-app { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:92%; max-width:360px; background:#1A102E; border:2px solid #10B981; border-radius:16px; padding:24px; z-index:10000; display:none; }
+        .modal-app.activo { display:block; }
+        .fondo-modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:9999; display:none; }
+        .fondo-modal.activo { display:block; }
+        .paso { display:flex; align-items:flex-start; gap:10px; margin-bottom:12px; font-size:14px; }
+        .numero { background:#10B981; color:white; width:22px; height:22px; border-radius:50%; display:grid; place-items:center; flex-shrink:0; font-weight:bold; font-size:12px; margin-top:2px; }
+        #botonInstalar { display:none; animation: pulse 2s infinite; }
+    </style>
+</head>
+<body class="bg-main text-white min-h-screen">
+
+    <div id="preloader">
+        <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@741c24092788343c5b9f92dbecae9d3ae93ae837/file_00000000e7bc71f5844bdf8247e54e5c.png" alt="ElitePixels" class="logo-preloader">
+        <h2 class="texto-preloader">Iniciando sistemas de distribuidores</h2>
+        <div class="barra-carga"><div class="progreso"></div></div>
+    </div>
+
+    <div id="pantalla-acceso">
+        <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@741c24092788343c5b9f92dbecae9d3ae93ae837/file_00000000e7bc71f5844bdf8247e54e5c.png" alt="ElitePixels" class="h-20 w-20 rounded-xl mb-4">
+        <div class="caja-acceso">
+            <h2 class="text-xl font-bold mb-2">Acceso Exclusivo</h2>
+            <p class="text-sm text-gray-300 mb-4">Ingresa tu contraseña de vendedor</p>
+            <input type="password" id="contrasena" class="input-pass" placeholder="Escribe tu contraseña aquí">
+            <button onclick="verificarAcceso()" class="btn-acceso">Ingresar</button>
+            <div id="mensaje-error" class="mensaje-error">Contraseña incorrecta, intenta nuevamente</div>
+        </div>
+    </div>
+
+    <div id="fondoModal" class="fondo-modal" onclick="cerrarModal()"></div>
+    <div id="modalApp" class="modal-app">
+        <h3 class="text-xl font-bold text-green-400 mb-4 text-center"><i class="fa fa-mobile-phone"></i> Cómo instalar</h3>
+        <div class="mb-4">
+            <p class="font-bold text-green-300 mb-2">📲 Chrome Android:</p>
+            <div class="paso"><span class="numero">1</span><span>Toca los 3 puntos ⋮ arriba derecha</span></div>
+            <div class="paso"><span class="numero">2</span><span>Toca <strong>«Instalar aplicación»</strong></span></div>
+            <div class="paso"><span class="numero">3</span><span>Confirma con «Instalar»</span></div>
+        </div>
+        <div class="mb-4">
+            <p class="font-bold text-green-300 mb-2">🍎 iPhone:</p>
+            <div class="paso"><span class="numero">1</span><span>Toca el botón compartir ⬆️</span></div>
+            <div class="paso"><span class="numero">2</span><span>Elige «Agregar a pantalla de inicio»</span></div>
+        </div>
+        <button onclick="cerrarModal()" class="w-full bg-green-600 hover:bg-green-700 py-2.5 rounded-lg font-bold transition">Entendido</button>
+    </div>
+
+    <div id="contenido-principal">
+        <header class="sticky top-0 z-50 bg-black/60 backdrop-blur-md border-b border-purple-800/60">
+            <div class="container mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn.jsdelivr.net/gh/dmxyt/elitepixels.store@741c24092788343c5b9f92dbecae9d3ae93ae837/file_00000000e7bc71f5844bdf8247e54e5c.png" alt="Logo" class="h-14 w-14 rounded-xl">
+                    <div>
+                        <h1 class="text-2xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">ElitePixels.store</h1>
+                        <p id="estado-vendedor" class="text-xs text-purple-300 font-semibold">Portal Vendedores</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 bg-yellow-500/20 px-3 py-1 rounded-full">
+                    <i class="fa fa-user-circle text-yellow-400"></i>
+                    <span class="text-sm font-semibold text-yellow-300">Autorizado</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="container mx-auto px-4 mt-6">
+            <div class="aviso-exclusivo rounded-xl p-4 text-center">
+                <i class="fa fa-lock text-purple-400 text-2xl mb-2"></i>
+                <h3 class="font-bold text-lg mb-1">ZONA EXCLUSIVA DE DISTRIBUIDORES</h3>
+                <p class="text-sm text-gray-300">Precios solo para afiliados registrados.</p>
+            </div>
+        </section>
+
+        <main class="container mx-auto px-4 py-6">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-4xl font-black mb-3 glow-text">LISTA DE PRECIOS MAYORISTAS</h2>
+                <p class="text-lg text-gray-300 mb-4">Tarifas especiales para tu red 🤝💎</p>
+                
+                <button onclick="copiarLista()" id="btnCopiar" class="btn-copiar px-6 py-3 rounded-xl font-bold flex items-center gap-2 mx-auto mb-3">
+                    <i class="fa fa-copy"></i> Copiar lista completa
+                </button>
+
+                <!-- BOTÓN DE INSTALACIÓN AUTOMÁTICA -->
+                <button id="botonInstalar" class="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-xl font-bold flex items-center gap-2 mx-auto transition shadow-lg mb-3">
+                    <i class="fa fa-download"></i> ✅ Instalar App ahora
+                </button>
+
+                <button onclick="abrirModal()" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-xl font-bold flex items-center gap-2 mx-auto transition shadow-lg">
+                    <i class="fa fa-question-circle"></i> ¿No aparece la opción?
+                </button>
+            </div>
+
+            <!-- RESTO DEL CONTENIDO IGUAL -->
+            <section class="mb-10">
+                <h3 class="text-xl font-bold mb-5 flex items-center gap-2"><i class="fa fa-diamond text-cyan-400"></i> Paquetes de Diamantes</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">110 Diamantes</span></div><div class="text-right"><p class="text-2xl font-black text-yellow-300">Q15</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20110%20diamantes%20por%20Q15" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div></div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">341 Diamantes</span></div><div class="text-right"><p class="text-2xl font-black text-yellow-300">Q35</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20341%20diamantes%20por%20Q35" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div></div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">572 Diamantes</span></div><div class="text-right"><p class="text-2xl font-black text-yellow-300">Q50</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20572%20diamantes%20por%20Q50" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div></div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">1.166 Diamantes</span></div><div class="text-right"><p class="text-2xl font-black text-yellow-300">Q100</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%201.166%20diamantes%20por%20Q100" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div></div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">2.398 Diamantes</span></div><div class="text-right"><p class="text-2xl font-black text-yellow-300">Q215</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%202.398%20diamantes%20por%20Q215" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div></div>
+                    <div class="card-diamante rounded-xl p-4 flex justify-between items-center"><div class="flex items-center gap-3"><i class="fa fa-diamond text-2xl text-cyan-300"></i><span class="text-xl font-bold">6.160 Diamantes</span></div><div class="text-right"><p class="text-2xl font-black text-yellow-300">Q450</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%206.160%20diamantes%20por%20Q450" class="btn-compra px-4 py-2 rounded-lg text-sm font-semibold mt-2 inline-block">Solicitar</a></div></div>
+                </div>
+            </section>
+
+            <section class="mb-10">
+                <h3 class="text-xl font-bold mb-5 flex items-center gap-2"><i class="fa fa-plus-circle text-pink-400"></i> Otros Productos</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card-pase rounded-xl p-5 flex flex-col justify-between"><div class="flex items-center gap-3 mb-3"><i class="fa fa-shield text-3xl text-orange-300"></i><h4 class="text-xl font-bold">Pase de Batalla</h4></div><p class="text-3xl font-black text-yellow-300 mb-3">30Q</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20Pase%20de%20Batalla%20por%20Q30" class="btn-compra px-4 py-2 rounded-lg text-center font-semibold">Solicitar</a></div>
+                    <div class="card-semanal rounded-xl p-5 flex flex-col justify-between"><div class="flex items-center gap-3 mb-3"><i class="fa fa-calendar text-3xl text-pink-300"></i><h4 class="text-xl font-bold">Pase Semanal</h4></div><p class="text-sm text-gray-300 mb-1">(150 diamantes)</p><p class="text-3xl font-black text-pink-300 mb-3">15Q</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20Pase%20Semanal%20por%20Q15" class="btn-compra px-4 py-2 rounded-lg text-center font-semibold">Solicitar</a></div>
+                    <div class="card-opcion rounded-xl p-5 flex flex-col justify-between"><div class="flex items-center gap-3 mb-3"><i class="fa fa-star text-3xl text-purple-300"></i><h4 class="text-xl font-bold">Pase Élite + Niveles</h4></div><p class="text-sm text-gray-300 mb-1">Desbloqueo inmediato</p><p class="text-3xl font-black text-purple-300 mb-3">55Q</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Solicito%20Pase%20%C3%89lite%20%2B%20Niveles%20por%20Q55" class="btn-compra px-4 py-2 rounded-lg text-center font-semibold">Solicitar</a></div>
+                    <div class="card-opcion rounded-xl p-5 flex flex-col justify-between"><div class="flex items-center gap-3 mb-3"><i class="fa fa-gift text-3xl text-green-300"></i><h4 class="text-xl font-bold">Cajas y Cosméticos</h4></div><p class="text-sm text-gray-300 mb-1">Skins, armas, mascotas</p><p class="text-lg font-semibold text-green-300 mb-3">Consulta precios</p><a href="https://m.me/elitepixels?text=Vendedor%20-%20Quiero%20precios%20de%20cajas%20y%20cosm%C3%A9ticos" class="btn-compra px-4 py-2 rounded-lg text-center font-semibold">Consultar</a></div>
+                </div>
+            </section>
+
+            <section class="text-center mt-10">
+                <a href="https://m.me/elitepixels" target="_blank" class="block w-full max-w-md mx-auto btn-compra pulse px-6 py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-3">
+                    <i class="fa fa-facebook-messenger"></i> Contactar como Vendedor
+                </a>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // SERVICE WORKER INCORPORADO (sin archivos externos)
+        if ('serviceWorker' in navigator) {
+            const swCodigo = `
+                self.addEventListener('install', e => self.skipWaiting());
+                self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+                self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));
+            `;
+            const swBlob = new Blob([swCodigo], {type: 'application/javascript'});
+            const swUrl = URL.createObjectURL(swBlob);
+            navigator.serviceWorker.register(swUrl).catch(err => console.log('SW opcional:', err));
+        }
+
+        // MOSTRAR BOTÓN DE INSTALACIÓN AUTOMÁTICA
+        let deferredPrompt;
+        const btnInstalar = document.getElementById('botonInstalar');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            btnInstalar.style.display = 'inline-flex';
+        });
+        btnInstalar.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') btnInstalar.style.display = 'none';
+            deferredPrompt = null;
+        });
+        window.addEventListener('appinstalled', () => btnInstalar.style.display = 'none');
+
+        // RESTO DE FUNCIONES
+        window.addEventListener('load', () => setTimeout(() => document.getElementById('preloader').classList.add('oculto'), 2200));
+        const vendedores = { "elite03": "Fer", "elite02": "Martita", "elite01": "Gudiel" };
+        function verificarAcceso() {
+            const pass = document.getElementById('contrasena').value.trim();
+            const error = document.getElementById('mensaje-error');
+            if(vendedores[pass]) {
+                document.getElementById('estado-vendedor').textContent = `¡Bienvenido, ${vendedores[pass]}!`;
+                setTimeout(() => document.getElementById('estado-vendedor').textContent = "Portal Vendedores", 3000);
+                document.getElementById('pantalla-acceso').classList.add('oculto');
+                document.getElementById('contenido-principal').style.display = 'block';
+            } else {
+                error.style.display = 'block';
+                setTimeout(() => error.style.display = 'none', 3000);
+            }
+        }
+        document.getElementById('contrasena').addEventListener('keydown', e => e.key === 'Enter' && verificarAcceso());
+        function abrirModal() { document.getElementById('fondoModal').classList.add('activo'); document.getElementById('modalApp').classList.add('activo'); }
+        function cerrarModal() { document.getElementById('fondoModal').classList.remove('activo'); document.getElementById('modalApp').classList.remove('activo'); }
+        function copiarLista() {
+            const texto = `📋 LISTA PRECIOS MAYORISTAS - ELITEPIXELS
+💎 110 Diamantes → Q15
+💎 341 Diamantes → Q35
+💎 572 Diamantes → Q50
+💎 1.166 Diamantes → Q100
+💎 2.398 Diamantes → Q215
+💎 6.160 Diamantes → Q450
+🎁 Pase Batalla → Q30
+🎁 Pase Semanal → Q15
+🎁 Pase Élite + Niveles → Q55`;
+            navigator.clipboard.writeText(texto).then(() => {
+                const btn = document.getElementById('btnCopiar');
+                btn.innerHTML = '<i class="fa fa-check"></i> ¡Copiado!';
+                setTimeout(() => btn.innerHTML = '<i class="fa fa-copy"></i> Copiar lista completa', 3000);
+            });
+        }
+    </script>
+</body>
+</html>
