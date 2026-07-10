@@ -65,6 +65,7 @@
         .btn-copiar { background:linear-gradient(90deg, #10B981, #059669); transition:0.3s; }
         .btn-copiar:hover { transform:scale(1.03); box-shadow:0 0 15px rgba(16,185,129,0.4); }
         .copiado { background:#059669 !important; }
+        .instrucciones-app { background:rgba(16,185,129,0.1); border:1px solid #10B981; border-radius:12px; padding:12px; font-size:13px; text-align:left; }
     </style>
 </head>
 <body class="bg-main text-white min-h-screen">
@@ -88,7 +89,7 @@
         </div>
     </div>
 
-    <!-- === CONTENIDO PRINCIPAL (SOLO VISIBLE SI ACCEDE) === -->
+    <!-- === CONTENIDO PRINCIPAL === -->
     <div id="contenido-principal">
         <!-- === CABECERA === -->
         <header class="sticky top-0 z-50 bg-black/60 backdrop-blur-md border-b border-purple-800/60">
@@ -119,10 +120,16 @@
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-black mb-3 glow-text">LISTA DE PRECIOS MAYORISTAS</h2>
                 <p class="text-lg text-gray-300 mb-4">Tarifas especiales para tu red de ventas 🤝💎</p>
-                <!-- BOTÓN DE COPIAR LISTA -->
-                <button id="btnCopiar" onclick="copiarLista()" class="btn-copiar px-6 py-3 rounded-xl font-bold flex items-center gap-2 mx-auto">
+                <button id="btnCopiar" onclick="copiarLista()" class="btn-copiar px-6 py-3 rounded-xl font-bold flex items-center gap-2 mx-auto mb-4">
                     <i class="fa fa-copy"></i> Copiar lista completa de precios
                 </button>
+
+                <!-- 📱 INSTRUCCIONES PARA INSTALAR LA APP -->
+                <div class="instrucciones-app mb-4">
+                    <p class="font-bold text-green-300 mb-1"><i class="fa fa-mobile-phone"></i> Instalar como aplicación en tu celular:</p>
+                    <p class="mb-1"><strong>Android:</strong> Toca los 3 puntos ⋮ arriba → "Instalar aplicación"</p>
+                    <p><strong>iPhone:</strong> Toca compartir ⬆️ → "Agregar a pantalla de inicio"</p>
+                </div>
             </div>
 
             <!-- === PAQUETES DE DIAMANTES === -->
@@ -272,13 +279,10 @@
             const nombre = vendedores[pass];
 
             if(nombre) {
-                // Mostrar mensaje de bienvenida personalizado
                 document.getElementById('estado-vendedor').textContent = `¡Bienvenido, ${nombre}!`;
-                // Cambiar a "Acceso Autorizado" después de 3 segundos
                 setTimeout(() => {
                     document.getElementById('estado-vendedor').textContent = "Portal Exclusivo Vendedores";
                 }, 3000);
-                // Ocultar pantalla de acceso y mostrar contenido
                 document.getElementById('pantalla-acceso').classList.add('oculto');
                 document.getElementById('contenido-principal').style.display = 'block';
             } else {
@@ -287,7 +291,6 @@
             }
         }
 
-        // Permitir presionar Enter para ingresar
         document.getElementById('contrasena').addEventListener('keydown', (e) => {
             if(e.key === 'Enter') verificarAcceso();
         });
@@ -332,12 +335,26 @@ Precios exclusivos para vendedores autorizados`;
             icono.style.transform = contenido.classList.contains('abierto') ? 'rotate(180deg)' : 'rotate(0)';
         }
 
-        // Instalación de App
+        // Instalación automática de App
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
-        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; installBtn.classList.remove('hidden'); });
-        installBtn.addEventListener('click', async () => { if (deferredPrompt) { deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; installBtn.classList.add('hidden'); } });
-        window.addEventListener('appinstalled', () => { installBtn.classList.add('hidden'); deferredPrompt = null; });
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.remove('hidden');
+        });
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                if (outcome === 'accepted') installBtn.classList.add('hidden');
+            }
+        });
+        window.addEventListener('appinstalled', () => {
+            installBtn.classList.add('hidden');
+            deferredPrompt = null;
+        });
     </script>
 </body>
 </html>
